@@ -386,7 +386,7 @@ D.v.s., kompilatorn har lagt till `this` åt dig
 
 --
 
-```cpp[4-6]
+```cpp[5]
 class SomeClass {
 	float piIsh;
 
@@ -397,8 +397,9 @@ class SomeClass {
 ```
 
 blir
+<!-- .element: class="fragment" -->
 
-```cpp[4-6]
+```cpp[5]
 class SomeClass {
 	float piIsh;
 
@@ -407,6 +408,68 @@ class SomeClass {
 	}
 };
 ```
+<!-- .element: class="fragment" -->
+
+--
+
+`this` kan också användas när en parameter ***skuggar*** en ***medlemsvariabel***
+
+Som i fallet med klassen `Car`. Låt oss ta en ny titt!
+<!-- .element: class="fragment" -->
+
+--
+
+```cpp[6-8]
+class Car {
+	private:
+	float speed;
+	float maxSpeed;
+  	...
+	Car(float p_maxSpeed){
+		model = p_model;
+		maxSpeed = p_maxSpeed;
+	...
+};
+```
+
+blir
+<!-- .element: class="fragment" -->
+
+```cpp[6-8]
+class Car {
+	private:
+	float speed;
+	float maxSpeed;
+  	...
+	Car(float maxSpeed){
+		model = p_model;
+		this->maxSpeed = maxSpeed;
+	...
+};
+```
+<!-- .element: class="fragment" -->
+
+---
+
+## Const
+
+## Överlagrade Konstruktorer
+
+## Avsaknad av defeaultkonstruktor 
+
+## Initialiseringslistor
+
+## Aggregatklasser
+
+## Delegerande Konstruktorer
+
+## typedef
+
+## static 
+
+## inline
+
+## struct
 
 					</textarea>
 				  </section>
