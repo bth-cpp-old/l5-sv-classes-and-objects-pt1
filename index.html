@@ -23,6 +23,12 @@
 
 Note:
 This will only display in the notes window.
+yhjj
+hjhkhk
+
+hjh
+* a
+* b
 
 ---
 
@@ -222,7 +228,7 @@ class Car {
 
 ## Nu provkör vi!
 
-```cpp[|7-8| 10-12 | 13-14 | 8 ]
+```cpp[|7-8| 10-12 | 13-14 | 7-8 ]
 class Car {
   ...
 };
@@ -262,7 +268,7 @@ class Car {
 		if (speed > maxSpeed) speed = maxSpeed;
 	}
   public:
-	void Car(float p_maxSpeed){
+	Car(float p_maxSpeed){
 		model = p_model;
 		maxSpeed = p_maxSpeed;
 	}
@@ -301,6 +307,7 @@ int main()
 hmm... najsigare!
 
 --
+<!-- .slide: data-transition="slide-in fade" -->
 
 ```cpp[6]
 class Car {
@@ -308,7 +315,7 @@ class Car {
 	float speed;
 	float maxSpeed;
   	...
-	void Car(float p_maxSpeed){
+	Car(float p_maxSpeed){
 		model = p_model;
 		maxSpeed = p_maxSpeed;
 	...
@@ -318,6 +325,7 @@ class Car {
 Varför heter `p_maxSpeed`, inte `maxSpeed`... ?
 
 --
+<!-- .slide: data-transition="fade" -->
 
 ```cpp[4,8]
 class Car {
@@ -325,7 +333,7 @@ class Car {
 	float speed;
 	float maxSpeed;
   	...
-	void Car(float p_maxSpeed){
+	Car(float p_maxSpeed){
 		model = p_model;
 		maxSpeed = p_maxSpeed;
 	...
@@ -335,6 +343,7 @@ class Car {
 En medlemsvariabel heter `maxSpeed`
 
 --
+<!-- .slide: data-transition="fade slide-out" -->
 
 ```cpp[4,6,8]
 class Car {
@@ -342,21 +351,62 @@ class Car {
 	float speed;
 	float maxSpeed;
   	...
-	void Car(float p_maxSpeed){
+	Car(float p_maxSpeed){
 		model = p_model;
 		maxSpeed = p_maxSpeed;
 	...
 };
 ```
-
 Om medlemsvariabeln inte ska *skuggas* måste parametern heta något annat
 
+--
+
 Typ `p_maxSpeed`
-<!-- .element: class="fragment" -->
 
 Eller...
 <!-- .element: class="fragment" -->
 
+---
+
+## Låt mig introducera
+
+--
+
+## `this`
+
+Ett ***nyckelord*** (***keyword***) som fungerar som en ***pekare*** till det ***aktuella objektet***
+
+--
+
+När du i en ***medlemsfunktion*** använt dig av en annan ***medlem*** har `this` ***implicit*** använts
+
+--
+
+D.v.s., kompilatorn har lagt till `this` åt dig
+
+--
+
+```cpp[4-6]
+class SomeClass {
+	float piIsh;
+
+	void calcPiIsh(){
+		piIsh = 22.0f / 7.0f;
+	}
+};
+```
+
+blir
+
+```cpp[4-6]
+class SomeClass {
+	float piIsh;
+
+	void calcPiIsh(){
+		this->piIsh = 22.0f / 7.0f;
+	}
+};
+```
 
 					</textarea>
 				  </section>
