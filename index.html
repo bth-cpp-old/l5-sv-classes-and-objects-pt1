@@ -247,7 +247,116 @@ hmm... inte så najs
 ## Konstruktorer
 
 * Körs när objekt skapas
-* Tvinga medlemsvariabler att bli initi
+* Tvinga medlemsvariabler att bli initialiserade
+
+--
+
+```cpp[1,11-14]
+class Car {
+  private:
+	float speed;
+	float maxSpeed;
+  
+	void sanityCheckSpeed(){
+		if (speed < 0) speed = 0.0f;
+		if (speed > maxSpeed) speed = maxSpeed;
+	}
+  public:
+	void Car(float p_maxSpeed){
+		model = p_model;
+		maxSpeed = p_maxSpeed;
+	}
+	void accelerate(float pedalFactor){
+		speed += 10 * pedalFactor;
+		sanityCheckSpeed();
+	}
+	void applyBreak(float pedalFactor){
+		speed -= 10 * pedalFactor;
+		sanityCheckSpeed();
+	}
+};
+```
+<!-- .element: class="r-stretch" -->
+
+--
+
+## Nu provkör vi igen!
+
+```cpp[7]
+class Car {
+  ...
+};
+
+int main()
+{
+    Car minNyaVolvo242Gl(120);
+    
+    minNyaVolvo242Gl.accelerate(1.0f) // Full gas!
+    minNyaVolvo242Gl.accelerate(1.0f) // Bra drag!
+    minNyaVolvo242Gl.accelerate(1.0f) // Det börjar gå lite fort...
+    minNyaVolvo242Gl.applyBreak(42.0f) // Rådjur!!!
+    minNyaVolvo242Gl.applyBreak(1.0f) // Puh!!! Vi överlevde!
+}
+```
+hmm... najsigare!
+
+--
+
+```cpp[6]
+class Car {
+	private:
+	float speed;
+	float maxSpeed;
+  	...
+	void Car(float p_maxSpeed){
+		model = p_model;
+		maxSpeed = p_maxSpeed;
+	...
+};
+```
+
+Varför heter `p_maxSpeed`, inte `maxSpeed`... ?
+
+--
+
+```cpp[4,8]
+class Car {
+	private:
+	float speed;
+	float maxSpeed;
+  	...
+	void Car(float p_maxSpeed){
+		model = p_model;
+		maxSpeed = p_maxSpeed;
+	...
+};
+```
+
+En medlemsvariabel heter `maxSpeed`
+
+--
+
+```cpp[4,6,8]
+class Car {
+	private:
+	float speed;
+	float maxSpeed;
+  	...
+	void Car(float p_maxSpeed){
+		model = p_model;
+		maxSpeed = p_maxSpeed;
+	...
+};
+```
+
+Om medlemsvariabeln inte ska *skuggas* måste parametern heta något annat
+
+Typ `p_maxSpeed`
+<!-- .element: class="fragment" -->
+
+Eller...
+<!-- .element: class="fragment" -->
+
 
 					</textarea>
 				  </section>
