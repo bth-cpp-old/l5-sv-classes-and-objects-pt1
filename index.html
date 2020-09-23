@@ -16,29 +16,30 @@
 	<body>
 		<div class="reveal">
 			<div class="slides">
-				<section data-markdown data-separator="^---" data-separator-vertical="^--">
+				<section data-markdown data-separator="^---" data-separator-vertical="^--" data-separator-notes="^Note:">
 					<textarea data-template>
 ## Agenda
-- Classes
-- Concept of classes and objects
-- Access (public and private)
-- Struct
-- Constructor and destructor
-- The this pointer
-- Const member functions
-- using = default and = delete
-- The friend concept
-- Inline
-- Static members
-- Dynamic memory in classes
-- UML Diagram
+* tbd
+
+Note:
+This will only display in the notes window.
 
 ---
 
-# What are classes ?
+## Problemet
 
-```c[1|2-3|5-6]
-class A {
+* Ni har jobbat med funktioner och variabler
+* Kan bli grötigt i stora projekt
+* Med klasser kan man dela upp koden modulärt
+
+---
+
+## Vad är en klass ?
+
+En gruppering av funktioner och variabler
+
+```cpp[1|2-3|5-6]
+class SomeClass {
 	int memberA;
 	float memberB;
 
@@ -46,6 +47,89 @@ class A {
 	void memberFunctionB(){}
 };
 ```
+<!-- .element: class="fragment" -->
+
+---
+
+Funktioner i en klass kan nå variablerna i densamma
+
+```cpp[5-8]
+class SomeClass {
+	int memberA;
+	float memberB;
+
+	void memberFunctionA(){
+		memberA = 42;
+		memberB = 22.0f / 7.0f;
+	}
+	void memberFunctionB(){}
+};
+```
+
+---
+
+Hur används klasser?
+
+För att skapa objekt!<!-- .element: class="fragment" -->
+
+---
+<!-- .slide: data-transition="fade" -->
+
+```cpp[7]
+class SomeClass {
+...
+};
+
+int main()
+{
+    SomeClass myClass;
+}
+```
+
+```bash
+Warning(s):
+35285585/source.cpp:16:15: warning: unused variable 'myClass' \
+     [-Wunused-variable]
+    SomeClass myClass;
+              ^
+1 warning generated.
+```
+<!-- .element: class="fragment" -->
+
+---
+<!-- .slide: data-transition="fade" -->
+	
+```cpp[8]
+class SomeClass {
+...
+};
+
+int main()
+{
+    SomeClass myClass;
+    myClass.memberFunctionA(); // Does not compile
+}
+```
+
+```bash
+Error(s):
+240841000/source.cpp:17:13: error: 'memberFunctionA' is a  \
+    member of 'SomeClass'
+    myClass.memberFunctionA(); // Does not compile
+            ^
+240841000/source.cpp:7:7: note: implicitly declared private here
+        void memberFunctionA(){
+             ^
+1 error generated.
+```
+<!-- .element: class="fragment" -->
+
+---
+
+## Vad är Private och Public?
+
+
+
 					</textarea>
 				  </section>
 			</div>
