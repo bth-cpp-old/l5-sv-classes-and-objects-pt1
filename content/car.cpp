@@ -1,16 +1,22 @@
+#include <string>
+
 class Car {
   private:
+    std::string makeAndModel;
+	float maxSpeed;
 	float speed;
-	const float maxSpeed;
   
 	void sanityCheckSpeed(){
 		if (speed < 0) speed = 0.0f;
 		if (speed > maxSpeed) speed = maxSpeed;
 	}
   public:
-	Car(float maxSpeed){
-		this->maxSpeed = maxSpeed;
-	}
+	Car() : speed(0.0f), maxSpeed(100){}
+    Car(float maxSpeed) : Car() {
+        if (maxSpeed > 240) maxSpeed = 240;
+        if (maxSpeed < 0) maxSpeed = 100;
+    }
+    Car(float maxSpeed, std::string makeAndModel) : Car(maxSpeed), makeAndModel(makeAndModel){}
 	void accelerate(float pedalFactor){
 		speed += 10 * pedalFactor;
 		sanityCheckSpeed();
@@ -21,8 +27,7 @@ class Car {
 	}
 };
 
-int main()
-{
+int main(){
     Car minVolvo242Gl(120);
     
     minVolvo242Gl.accelerate(1.0f); // Full gas!

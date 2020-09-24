@@ -355,7 +355,9 @@ class Car {
 		if (speed > maxSpeed) speed = maxSpeed;
 	}
   public:
-	Car() : maxSpeed(100){}
+	Car(){
+        maxSpeed = 100;
+    }
 	Car(float p_maxSpeed){
         speed = 0.0f;
         maxSpeed = p_maxSpeed;
@@ -688,7 +690,7 @@ blir
 
 ```cpp[4]
 class Car {
-	private:
+  private:
 	float speed;
 	const float maxSpeed;
   	...
@@ -737,7 +739,6 @@ class Car {
 	float speed;
 	const float maxSpeed;
 	...
-  public:
 	Car(float maxSpeed){
         speed = 0.0f;
 		this->maxSpeed = maxSpeed;
@@ -755,7 +756,6 @@ class Car {
 	float speed;
 	const float maxSpeed;
 	...
-  public:
 	Car(float maxSpeed) : speed(0.0f), maxSpeed(maxSpeed){}
 	...
   };
@@ -779,7 +779,7 @@ Färre kopieringar -> högre prestanda
 
 Fördelar?
 
-Mindre risk för fallet
+Mindre risk för fel
 
 Det händer att man glömmer `this?  exempelvis
 <!-- .element: class="fragment" -->
@@ -788,13 +788,64 @@ Det händer att man glömmer `this?  exempelvis
 
 ## Delegerande Konstruktorer
 
-## Aggregatklasser
+Ibland behöver man ***återanvända*** logik från en konstruktor i en ***annan***
 
+--
 
-## typedef
+```cpp
+class Car {
+  private:
+    std::string makeAndModel
+	float maxSpeed;
+	float speed;
+	...
+  public:
+	Car() : speed(0.0f), maxSpeed(100){}
+    Car(float maxSpeed) : speed(0.0f){
+        if (maxSpeed > 240) maxSpeed = 240;
+        if (maxSpeed < 0) maxSpeed = 100;
+    }
+    Car(float maxSpeed, std::string makeAndModel) : speed(0.0f), makeAndModel(makeAndModel){
+        if (maxSpeed > 240) maxSpeed = 240;
+        if (maxSpeed < 0) maxSpeed = 100;
+    }
+};
+```
 
-## static 
+--
 
-## inline
+```cpp
+class Car {
+  private:
+    std::string makeAndModel
+	float maxSpeed;
+	float speed;
+	...
+  public:
+	Car() : speed(0.0f), maxSpeed(100){}
+    Car(float maxSpeed) : Car() {
+        if (maxSpeed > 240) maxSpeed = 240;
+        if (maxSpeed < 0) maxSpeed = 100;
+    }
+    Car(float maxSpeed, std::string makeAndModel) : Car(maxSpeed), makeAndModel(makeAndModel){}
+};
+```
 
-## struct
+```bash
+car.cpp:19:53: error: an initializer for a delegating constructor must appear alone
+    Car(float maxSpeed, std::string makeAndModel) : Car(maxSpeed), makeAndModel(makeAndModel){}
+                                                    ^~~~~~~~~~~~~  ~~~~~~~~~~~~~~~~~~~~~~~~~~
+1 error generated.
+```
+
+---
+
+### Aggregatklasser
+
+### typedef
+
+### static 
+
+### inline
+
+### struct
