@@ -24,7 +24,7 @@ En mall som man skapar objekt från
 
 --
 
-## Varför klasser?
+### Varför klasser?
 
 Ni har jobbat med funktioner och variabler
 <!-- .element: class="fragment" -->
@@ -39,13 +39,7 @@ Med klasser kan man dela upp koden modulärt
 <!-- .slide: data-transition="slide-in fade-out" -->
 
 ```cpp[1|2|4-6]
-class SomeClass {
-	float piIsh;
-
-	void calcPiIsh(){
-		...
-	}
-};
+include({{SomeClass1.hpp}})
 ```
 
 --
@@ -54,75 +48,36 @@ class SomeClass {
 Funktioner i ett objekt kan nå variablerna i detsamma
 
 ```cpp[4-6]
-class SomeClass {
-	float piIsh;
-
-	void calcPiIsh(){
-		piIsh = 22.0f / 7.0f;
-	}
-};
+include({{SomeClass2.hpp}})
 ```
 <!-- .element: class="fragment" -->
 
 --
-<!-- .slide: data-transition="slide-in fade" -->
 
 Hur skapar man objekten från klasserna?
 
 ```cpp[10]
-class SomeClass {
-	float piIsh;
+include({{SomeClass2.hpp}})
 
-	void calcPiIsh(){
-		piIsh = 22.0f / 7.0f;
-	}
-};
-
-int main() {
-    SomeClass myClass;
-}
+include({{SomeClassMain1.cpp}})
 ```
 <!-- .element: class="fragment" -->
 
 ```bash[|1|2|4]
-Warning(s):
-35285585/source.cpp:16:15: warning: unused variable 'myClass' \
-     [-Wunused-variable]
-    SomeClass myClass;
-              ^
-1 warning generated.
+include({{SomeClassMain1CompOut.txt}})
 ```
 <!-- .element: class="fragment" -->
 
 --
 
-<!-- .slide: data-transition="fade" -->
-	
 ```cpp[12]
-class SomeClass {
-	float piIsh;
+include({{SomeClass2.hpp}})
 
-	void calcPiIsh(){
-		piIsh = 22.0f / 7.0f;
-	}
-};
-
-int main() {
-    SomeClass myClass;
-    myClass.calcPiIsh());
-}
+include({{SomeClassMain2.cpp}})
 ```
 
 ```bash[|1|6|7]
-Error(s):
-240841000/source.cpp:17:13: error: 'memberFunctionA' is a  \
-    member of 'SomeClass'
-    myClass.calcPiIsh();
-            ^
-240841000/source.cpp:7:7: note: implicitly declared private here
-        void calcPiIsh(){
-             ^
-1 error generated.
+include({{SomeClassMain2CompOut.txt}})
 ```
 <!-- .element: class="fragment" -->
 
@@ -130,19 +85,10 @@ Error(s):
 <!-- .slide: data-transition="fade" -->
 	
 ```cpp[2,4]
-class SomeClass {
-  private:
-	float piIsh;
-  public:
-	void calcPiIsh(){
-		piIsh = 22.0f / 7.0f;
-	}
-};
+include({{SomeClass3.hpp}})
 
-int main() {
-    SomeClass myClass;
-    myClass.calcPiIsh());
-}
+include({{SomeClassMain2.cpp}})
+
 ```
 
 ```bash
@@ -196,29 +142,7 @@ Ger möjlighet till *Abstraktion* och *Inkapsling*
 --
 
 ```cpp[|3-4|6-9|11-22]
-class Car {
-  private:
-	float speed;
-	float maxSpeed;
-  
-	void sanityCheckSpeed(){
-		if (speed < 0) speed = 0.0f;
-		if (speed > maxSpeed) speed = maxSpeed;
-	}
-  public:
-	void setup(float p_maxSpeed){
-		speed = 0.0f;
-		maxSpeed = p_maxSpeed;
-	}
-	void accelerate(float pedalFactor){
-		speed += 10 * pedalFactor;
-		sanityCheckSpeed();
-	}
-	void applyBreak(float pedalFactor){
-		speed -= 10 * pedalFactor;
-		sanityCheckSpeed();
-	}
-};
+include({{Car1.hpp}})
 ```
 <!-- .element: class="r-stretch" -->
 
@@ -226,21 +150,10 @@ class Car {
 
 ## Nu provkör vi!
 
-```cpp[|7-8| 10-12 | 13-14 | 7-8 ]
-class Car {
-  ...
-};
+```cpp[7-8| 10-12 | 13-14 | 7-8 ]
+include({{CarShort.hpp}})
 
-int main() {
-    Car minVolvo242Gl;
-    minVolvo242Gl.setup(120);
-    
-    minVolvo242Gl.accelerate(1.0f); // Full gas!
-    minVolvo242Gl.accelerate(1.0f); // Bra drag!
-    minVolvo242Gl.accelerate(1.0f); // Nu börjar det gå lite fort..
-    minVolvo242Gl.applyBreak(42.0f); // Rådjur!!!
-    minVolvo242Gl.applyBreak(1.0f); // Puh!!! Vi överlevde!
-}
+include({{Car1Main.cpp}})
 ```
 hmm... inte så najs
 <!-- .element: class="fragment" -->
@@ -255,29 +168,7 @@ hmm... inte så najs
 --
 
 ```cpp[1,11-14]
-class Car {
-  private:
-	float speed;
-	float maxSpeed;
-  
-	void sanityCheckSpeed(){
-		if (speed < 0) speed = 0.0f;
-		if (speed > maxSpeed) speed = maxSpeed;
-	}
-  public:
-	Car(float p_maxSpeed){
-		speed = 0.0f;
-		maxSpeed = p_maxSpeed;
-	}
-	void accelerate(float pedalFactor){
-		speed += 10 * pedalFactor;
-		sanityCheckSpeed();
-	}
-	void applyBreak(float pedalFactor){
-		speed -= 10 * pedalFactor;
-		sanityCheckSpeed();
-	}
-};
+include({{Car2.hpp}})
 ```
 <!-- .element: class="r-stretch" -->
 
@@ -285,20 +176,10 @@ class Car {
 
 ## Nu provkör vi igen!
 
-```cpp[7]
-class Car {
-  ...
-};
+```cpp[6]
+include({{CarShort.hpp}})
 
-int main() {
-    Car minNyaVolvo242Gl(120);
-    
-    minNyaVolvo242Gl.accelerate(1.0f); // Full gas!
-    minNyaVolvo242Gl.accelerate(1.0f); // Bra drag!
-    minNyaVolvo242Gl.accelerate(1.0f); // Det börjar gå lite fort..
-    minNyaVolvo242Gl.applyBreak(42.0f); // Rådjur!!!
-    minNyaVolvo242Gl.applyBreak(1.0f); // Puh!!! Vi överlevde!
-}
+include({{Car2Main.cpp}})
 ```
 Najsigare!
 
@@ -309,68 +190,22 @@ Najsigare!
 --
 
 ```cpp[6]
-class Car {
-  ...
-};
+include({{CarShort.hpp}})
 
-int main() {
-    Car cars[10];
-}
+include({{Car2Main2.cpp}})
 ```
 
 --
 
 ```bash[2-5, 6-18]
-Error(s):
-193206876/source.cpp:24:9: error: no matching constructor for \
-	initialization of 'Car [10]'
-    Car cars[10];
-        ^
-193206876/source.cpp:11:5: note: candidate constructor not viable: \
-	requires single argument 'maxSpeed', but no arguments were provided
-    Car(float maxSpeed) : maxSpeed(maxSpeed){}
-    ^
-193206876/source.cpp:1:7: note: candidate constructor \
-	(the implicit copy constructor) not viable: \
-	requires 1 argument, but 0 were provided \
-class Car {
-      ^
-193206876/source.cpp:1:7: note: candidate constructor \
-	(the implicit move constructor) not viable: \
-	requires 1 argument, but 0 were provided \
-1 error generated.
+include({{Car2Main2CompOut.txt}})
 ```
 <!-- .element: class="r-stretch" -->
 
 --
 
-```cpp[11]
-class Car {
-  private:
-	float speed;
-	const float maxSpeed;
-	
-	void sanityCheckSpeed(){
-		if (speed < 0) speed = 0.0f;
-		if (speed > maxSpeed) speed = maxSpeed;
-	}
-  public:
-	Car(){
-        maxSpeed = 100;
-    }
-	Car(float p_maxSpeed){
-        speed = 0.0f;
-        maxSpeed = p_maxSpeed;
-    }
-	void accelerate(float pedalFactor){
-		speed += 10 * pedalFactor;
-		sanityCheckSpeed();
-	}
-	void applyBreak(float pedalFactor){
-		speed -= 10 * pedalFactor;
-	  	sanityCheckSpeed();
-	}
-};
+```cpp[11-13]
+include({{Car3.hpp}})
 ```
 <!-- .element: class="r-stretch" -->
 
@@ -397,18 +232,10 @@ Man kan be kompilatorn skapa en dock
 ### Exempel:
 
 ```cpp[5]
-class SomeClass {
-  private:
-	float piIsh;
-  public:
-	SomeClass() = default;
-	SomeClass(float customPi) : piIsh(customPi){}
-};
+include({{SomeClass4.hpp}})
 
-int main(){
-    SomeClass myPis[42];
-    SomeClass myPi(22.0f / 7.0f);
-}
+include({{SomeClass4Main.cpp}})
+
 ```
 
 ```bash
@@ -424,51 +251,21 @@ Man kan också be kompilatorn ta bort en konstruktor
 
 ### Exempel:
 
-```cpp[]
-class SomeClass {
-  private:
-	float piIsh;
-  public:
-	SomeClass() = default;
-	SomeClass(float customPi) : piIsh(customPi){}
-};
+```cpp[5,13]
+include({{SomeClass5.hpp}})
 
-int main(){
-    SomeClass myPi(22.0f / 7.0f);
-    SomeClass mySecondPi(myPi);
-}
-```
-
-```bash
-Compilation time: 0.22 sec
+include({{SomeClass5Main.cpp}})
 ```
 
 --
 
-```cpp[6]
-class SomeClass {
-  private:
-	float piIsh;
-  public:
-	SomeClass() = default;
-	SomeClass(SomeClass&) = delete;
-	SomeClass(float customPi) : piIsh(customPi){}
-};
-
-int main(){
-    SomeClass myPi(22.0f / 7.0f);
-    SomeClass mySecondPi(myPi);
-}
-```
-
 ```bash
 Error(s):
-source.cpp:12:15: error: call to deleted constructor of 'SomeClass'
-    SomeClass mySecondPi(myPi);
-              ^          ~~~~
-source.cpp:6:2: note: 'SomeClass' has been explicitly marked \
-    deleted here
-        SomeClass(SomeClass&) = delete;
+889997996/source.cpp:13:15: error: call to deleted constructor of 'SomeClass'
+    SomeClass mySecondPi(42);
+              ^          ~~
+889997996/source.cpp:5:2: note: 'SomeClass' has been explicitly marked deleted here
+        SomeClass(int customPi) = delete;
         ^
 1 error generated.
 ```
@@ -580,10 +377,6 @@ Eller...
 <!-- .element: class="fragment" -->
 
 ---
-
-## Låt mig introducera
-
---
 
 ## `this`
 
