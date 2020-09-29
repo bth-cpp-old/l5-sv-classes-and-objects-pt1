@@ -815,7 +815,8 @@ class Car {
         if (maxSpeed > 240) maxSpeed = 240;
         if (maxSpeed < 0) maxSpeed = 100;
     }
-    Car(float maxSpeed, std::string makeAndModel) : speed(0.0f), makeAndModel(makeAndModel){
+    Car(float maxSpeed, std::string makeAndModel)
+		: speed(0.0f), makeAndModel(makeAndModel){
         if (maxSpeed > 240) maxSpeed = 240;
         if (maxSpeed < 0) maxSpeed = 100;
     }
@@ -828,37 +829,103 @@ class Car {
 class Car {
   private:
     std::string makeAndModel
-	float maxSpeed;
-	float speed;
-	...
+	  float maxSpeed;
+	  float speed;
+	  ...
   public:
-	Car() : speed(0.0f), maxSpeed(100){}
+	  Car() : speed(0.0f), maxSpeed(100){}
     Car(float maxSpeed) : Car() {
         if (maxSpeed > 240) maxSpeed = 240;
         if (maxSpeed < 0) maxSpeed = 100;
     }
-    Car(float maxSpeed, std::string makeAndModel) : Car(maxSpeed), makeAndModel(makeAndModel){}
+    Car(float maxSpeed, std::string makeAndModel): Car(maxSpeed){
+        this->makeAndModel = makeAndModel;
+    }
 };
 ```
 
-```bash
-car.cpp:19:53: error: an initializer for a delegating constructor must appear alone
-    Car(float maxSpeed, std::string makeAndModel) : Car(maxSpeed), makeAndModel(makeAndModel){}
-                                                    ^~~~~~~~~~~~~  ~~~~~~~~~~~~~~~~~~~~~~~~~~
-1 error generated.
-```
+--
+
+### Pros & Cons
+
+Logik kan ***återanvändas***
+
+Kan ***inte*** kombineras med ***initialiseringslistor***
 
 ---
 
-### Aggregatklasser
+## struct
 
-### typedef
+Som en klass typ
 
-### static 
+Men, allt är **`public`** istället för **`private`** per ***default***
 
-### inline
+--
 
-### struct
+```cpp[1]
+class SomeClass {
+	float piIsh;
+
+	void calcPiIsh(){
+		piIsh = 22.0f / 7.0f;
+	}
+};
+```
+
+blir
+
+```cpp[1]
+struct SomeStruct {
+	float piIsh;
+
+	void calcPiIsh(){
+		piIsh = 22.0f / 7.0f;
+	}
+};
+```
+
+--
+
+Använd **`struct`** istället för `class` när du vill ***gruppera data*** utan allt för mycket ***funktionalitet***. 
+
+--
+
+Exempelvis för ***aggregatklasser***
+
+---
+
+## Aggregatklasser
+
+En klass utan:
+* Konstruktorer (och destruktorer)*
+* Privata icke-statiska medlemmar
+* Utan arv (basklasser och virtuella funktioner)*
+
+Vi kommer gå igenom vad detta är vid en senare föreläsning :-)
+
+--
+
+### Med initialiseringslista
+
+```cpp
+struct Vec3f { float x, y, z; };
+struct Box { Vec3f min, max; };
+
+int main(){
+	Box myBox = { {1.0f, 2.0f, 3.0f}, {2.0f, 3.0f, 4.0f} };
+}
+
+```
+
+---
+## typedef
+
+## static 
+
+## inline
+
+## Best practices
+
 				  </section>
 			</div>
 		</div>

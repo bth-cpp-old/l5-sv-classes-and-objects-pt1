@@ -477,21 +477,72 @@ include({{Car7Short.hpp}})
 include({{Car8Short.hpp}})
 ```
 
-```bash
-car.cpp:19:53: error: an initializer for a delegating constructor must appear alone
-    Car(float maxSpeed, std::string makeAndModel) : Car(maxSpeed), makeAndModel(makeAndModel){}
-                                                    ^~~~~~~~~~~~~  ~~~~~~~~~~~~~~~~~~~~~~~~~~
-1 error generated.
-```
+--
+
+### Pros & Cons
+
+Logik kan ***återanvändas***
+
+Kan ***inte*** kombineras med ***initialiseringslistor***
 
 ---
 
-### Aggregatklasser
+## struct
 
-### typedef
+Som en klass typ
 
-### static 
+Men, allt är **`public`** istället för **`private`** per ***default***
 
-### inline
+--
 
-### struct
+```cpp[1]
+include({{SomeClass2.hpp}})
+```
+
+blir
+
+```cpp[1]
+include({{SomeStruct.hpp}})
+```
+
+--
+
+Använd **`struct`** istället för `class` när du vill ***gruppera data*** utan allt för mycket ***funktionalitet***. 
+
+--
+
+Exempelvis för ***aggregatklasser***
+
+---
+
+## Aggregatklasser
+
+En klass utan:
+* Konstruktorer (och destruktorer)*
+* Privata icke-statiska medlemmar
+* Utan arv (basklasser och virtuella funktioner)*
+
+Vi kommer gå igenom vad detta är vid en senare föreläsning :-)
+
+--
+
+### Med initialiseringslista
+
+```cpp
+struct Vec3f { float x, y, z; };
+struct Box { Vec3f min, max; };
+
+int main(){
+	Box myBox = { {1.0f, 2.0f, 3.0f}, {2.0f, 3.0f, 4.0f} };
+}
+
+```
+
+---
+## typedef
+
+## static 
+
+## inline
+
+## Best practices
