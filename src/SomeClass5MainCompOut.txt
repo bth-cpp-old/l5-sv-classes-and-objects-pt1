@@ -1,0 +1,8 @@
+Error(s):
+889997996/source.cpp:13:15: error: call to deleted constructor of 'SomeClass'
+    SomeClass mySecondPi(42);
+              ^          ~~
+889997996/source.cpp:5:2: note: 'SomeClass' has been explicitly marked deleted here
+        SomeClass(int customPi) = delete;
+        ^
+1 error generated.

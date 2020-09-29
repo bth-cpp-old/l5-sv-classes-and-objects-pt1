@@ -188,7 +188,7 @@ Medlemmar är `private` om inget annat anges
 
 --
 
-## Varför `public`/`private`?
+### Varför `public`/`private`?
 
 För att strukturera upp koden
 <!-- .element: class="fragment" -->
@@ -198,7 +198,7 @@ Ger möjlighet till *Abstraktion* och *Inkapsling*
 
 --
 
-## Abstraktion
+### Abstraktion
 
 *Användaren behöver inte veta vad som händer under huven*
 
@@ -208,13 +208,13 @@ Ger möjlighet till *Abstraktion* och *Inkapsling*
 
 --
 
-## Inkapsling (Encapsulation)
+### Inkapsling (Encapsulation)
 
 *Saker som hänger ihop ska samlas*
 
 --
 
-## Ett exempel
+### Ett exempel
 
 --
 
@@ -247,7 +247,7 @@ class Car {
 
 --
 
-## Nu provkör vi!
+### Nu provkör vi!
 
 ```cpp[7-8| 10-12 | 13-14 | 7-8 ]
 class Car {
@@ -306,7 +306,7 @@ class Car {
 
 --
 
-## Nu provkör vi igen!
+### Nu provkör vi igen!
 
 ```cpp[6]
 class Car {
@@ -327,7 +327,7 @@ Najsigare!
 
 --
 
-## Om jag vill ha flera bilar då?
+### Om jag vill ha flera bilar då?
 
 --
 
@@ -555,9 +555,10 @@ class Car {
 	float maxSpeed;
   	...
 	Car(float p_maxSpeed){
-		model = p_model;
+		speed = 0.0f;
 		maxSpeed = p_maxSpeed;
 	...
+};
 };
 ```
 
@@ -573,7 +574,7 @@ class Car {
 	float maxSpeed;
   	...
 	Car(float p_maxSpeed){
-		model = p_model;
+		speed = 0.0f;
 		maxSpeed = p_maxSpeed;
 	...
 };
@@ -610,6 +611,7 @@ class SomeClass {
 	void calcPiIsh(){
 		piIsh = 22.0f / 7.0f;
 	}
+};
 };
 ```
 
@@ -694,14 +696,16 @@ blir
 
 ```cpp[4]
 class Car {
-  private:
+	private:
 	float speed;
 	const float maxSpeed;
   	...
 	Car(float maxSpeed){
 		speed = 0.0f;
 		this->maxSpeed = maxSpeed;
+	}
 	...
+};
 };
 ```
 <!-- .element: class="fragment" -->
@@ -726,6 +730,7 @@ Error(s):
         const float maxSpeed;
         ~~~~~~~~~~~~^~~~~~~~
 2 errors generated.
+
 ```
 <!-- .element: class="r-stretch" -->
 
@@ -737,32 +742,33 @@ Ett annat sätt att initialisera medlemsvariabler
 
 --
 
-```cpp[7-9]
+```cpp[6-9]
 class Car {
-  private:
+	private:
 	float speed;
 	const float maxSpeed;
-	...
+  	...
 	Car(float maxSpeed){
-        speed = 0.0f;
+		speed = 0.0f;
 		this->maxSpeed = maxSpeed;
 	}
 	...
-  };
+};
+
 ```
 
 blir
 <!-- .element: class="fragment" -->
 
-```cpp[7]
+```cpp[6]
 class Car {
-  private:
+	private:
 	float speed;
 	const float maxSpeed;
-	...
+  	...
 	Car(float maxSpeed) : speed(0.0f), maxSpeed(maxSpeed){}
 	...
-  };
+};
 ```
 <!-- .element: class="fragment" -->
 

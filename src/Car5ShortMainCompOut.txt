@@ -1,0 +1,17 @@
+Error(s):
+1172188222/source.cpp:11:2: error: constructor for 'Car' must explicitly \
+	initialize the const member 'maxSpeed'
+        Car(float p_maxSpeed){
+        ^
+1172188222/source.cpp:4:14: note: declared here
+        const float maxSpeed;
+                    ^
+1172188222/source.cpp:12:12: error: cannot assign to non-static data \
+	member 'maxSpeed' with const-qualified type 'const float'
+                maxSpeed = p_maxSpeed;
+                ~~~~~~~~ ^
+1172188222/source.cpp:4:14: note: non-static data member 'maxSpeed' \
+	declared const here
+        const float maxSpeed;
+        ~~~~~~~~~~~~^~~~~~~~
+2 errors generated.

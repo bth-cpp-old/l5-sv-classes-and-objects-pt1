@@ -111,7 +111,7 @@ Medlemmar är `private` om inget annat anges
 
 --
 
-## Varför `public`/`private`?
+### Varför `public`/`private`?
 
 För att strukturera upp koden
 <!-- .element: class="fragment" -->
@@ -121,7 +121,7 @@ Ger möjlighet till *Abstraktion* och *Inkapsling*
 
 --
 
-## Abstraktion
+### Abstraktion
 
 *Användaren behöver inte veta vad som händer under huven*
 
@@ -131,13 +131,13 @@ Ger möjlighet till *Abstraktion* och *Inkapsling*
 
 --
 
-## Inkapsling (Encapsulation)
+### Inkapsling (Encapsulation)
 
 *Saker som hänger ihop ska samlas*
 
 --
 
-## Ett exempel
+### Ett exempel
 
 --
 
@@ -148,7 +148,7 @@ include({{Car1.hpp}})
 
 --
 
-## Nu provkör vi!
+### Nu provkör vi!
 
 ```cpp[7-8| 10-12 | 13-14 | 7-8 ]
 include({{CarShort.hpp}})
@@ -174,7 +174,7 @@ include({{Car2.hpp}})
 
 --
 
-## Nu provkör vi igen!
+### Nu provkör vi igen!
 
 ```cpp[6]
 include({{CarShort.hpp}})
@@ -185,7 +185,7 @@ Najsigare!
 
 --
 
-## Om jag vill ha flera bilar då?
+### Om jag vill ha flera bilar då?
 
 --
 
@@ -260,14 +260,7 @@ include({{SomeClass5Main.cpp}})
 --
 
 ```bash
-Error(s):
-889997996/source.cpp:13:15: error: call to deleted constructor of 'SomeClass'
-    SomeClass mySecondPi(42);
-              ^          ~~
-889997996/source.cpp:5:2: note: 'SomeClass' has been explicitly marked deleted here
-        SomeClass(int customPi) = delete;
-        ^
-1 error generated.
+include({{SomeClass5MainCompOut.txt}})
 ```
 
 ---
@@ -283,15 +276,7 @@ Eller:
 Det fungerar även på vanliga funktioner...
 
 ```cpp
-#include <cassert>
-
-int f(){ return 42; }
-int f(int i){ return i; }
-
-int main(){
-    assert( f() == 42);
-    assert( f(7) == 7);
-}
+include({{Overloading.cpp}})
 ```
 
 ```bash
@@ -320,16 +305,7 @@ Då vet kompilatorn vilken ***version*** av funktionen du anropar
 <!-- .slide: data-transition="slide-in fade" -->
 
 ```cpp[6]
-class Car {
-	private:
-	float speed;
-	float maxSpeed;
-  	...
-	Car(float p_maxSpeed){
-		speed = 0.0f;
-		maxSpeed = p_maxSpeed;
-	...
-};
+include({{Car3Short.hpp}})
 ```
 
 Varför heter `p_maxSpeed`, inte `maxSpeed`... ?
@@ -338,15 +314,7 @@ Varför heter `p_maxSpeed`, inte `maxSpeed`... ?
 <!-- .slide: data-transition="fade" -->
 
 ```cpp[4,8]
-class Car {
-	private:
-	float speed;
-	float maxSpeed;
-  	...
-	Car(float p_maxSpeed){
-		model = p_model;
-		maxSpeed = p_maxSpeed;
-	...
+include({{Car3Short.hpp}})
 };
 ```
 
@@ -356,16 +324,7 @@ En medlemsvariabel heter redan `maxSpeed`
 <!-- .slide: data-transition="fade slide-out" -->
 
 ```cpp[4,6,8]
-class Car {
-	private:
-	float speed;
-	float maxSpeed;
-  	...
-	Car(float p_maxSpeed){
-		model = p_model;
-		maxSpeed = p_maxSpeed;
-	...
-};
+include({{Car3Short.hpp}})
 ```
 Om medlemsvariabeln inte ska ***gå ur scope*** måste parametern heta något annat
 
@@ -393,12 +352,7 @@ D.v.s., kompilatorn har lagt till `this` åt dig
 --
 
 ```cpp[5]
-class SomeClass {
-	float piIsh;
-
-	void calcPiIsh(){
-		piIsh = 22.0f / 7.0f;
-	}
+include({{SomeClass2.hpp}})
 };
 ```
 
@@ -406,13 +360,7 @@ blir
 <!-- .element: class="fragment" -->
 
 ```cpp[5]
-class SomeClass {
-	float piIsh;
-
-	void calcPiIsh(){
-		this->piIsh = 22.0f / 7.0f;
-	}
-};
+include({{SomeClass2.1.hpp}})
 ```
 <!-- .element: class="fragment" -->
 
@@ -426,32 +374,14 @@ Som i fallet med klassen `Car`. Låt oss ta en ny titt!
 --
 
 ```cpp[6-8]
-class Car {
-	private:
-	float speed;
-	float maxSpeed;
-  	...
-	Car(float p_maxSpeed){
-		speed = 0.0f;
-		maxSpeed = p_maxSpeed;
-	...
-};
+include({{Car3Short.hpp}})
 ```
 
 blir
 <!-- .element: class="fragment" -->
 
 ```cpp[6-8]
-class Car {
-	private:
-	float speed;
-	float maxSpeed;
-  	...
-	Car(float maxSpeed){
-		speed = 0.0f;
-		this->maxSpeed = maxSpeed;
-	...
-};
+include({{Car4Short.hpp}})
 ```
 <!-- .element: class="fragment" -->
 
@@ -466,31 +396,14 @@ Det blir alltså en konstant
 --
 
 ```cpp[4]
-class Car {
-	private:
-	float speed;
-	float maxSpeed;
-  	...
-	Car(float maxSpeed){
-		speed = 0.0f;
-		this->maxSpeed = maxSpeed;
-	...
-};
+include({{Car4Short.hpp}})
 ```
 
 blir
 <!-- .element: class="fragment" -->
 
 ```cpp[4]
-class Car {
-  private:
-	float speed;
-	const float maxSpeed;
-  	...
-	Car(float maxSpeed){
-		speed = 0.0f;
-		this->maxSpeed = maxSpeed;
-	...
+include({{Car5Short.hpp}})
 };
 ```
 <!-- .element: class="fragment" -->
@@ -498,23 +411,8 @@ class Car {
 --
 
 ```bash[2-4 | 9-12]
-Error(s):
-1172188222/source.cpp:11:2: error: constructor for 'Car' must explicitly \
-	initialize the const member 'maxSpeed'
-        Car(float p_maxSpeed){
-        ^
-1172188222/source.cpp:4:14: note: declared here
-        const float maxSpeed;
-                    ^
-1172188222/source.cpp:12:12: error: cannot assign to non-static data \
-	member 'maxSpeed' with const-qualified type 'const float'
-                maxSpeed = p_maxSpeed;
-                ~~~~~~~~ ^
-1172188222/source.cpp:4:14: note: non-static data member 'maxSpeed' \
-	declared const here
-        const float maxSpeed;
-        ~~~~~~~~~~~~^~~~~~~~
-2 errors generated.
+include({{Car5ShortMainCompOut.txt}})
+
 ```
 <!-- .element: class="r-stretch" -->
 
@@ -526,32 +424,16 @@ Ett annat sätt att initialisera medlemsvariabler
 
 --
 
-```cpp[7-9]
-class Car {
-  private:
-	float speed;
-	const float maxSpeed;
-	...
-	Car(float maxSpeed){
-        speed = 0.0f;
-		this->maxSpeed = maxSpeed;
-	}
-	...
-  };
+```cpp[6-9]
+include({{Car5Short.hpp}})
+
 ```
 
 blir
 <!-- .element: class="fragment" -->
 
-```cpp[7]
-class Car {
-  private:
-	float speed;
-	const float maxSpeed;
-	...
-	Car(float maxSpeed) : speed(0.0f), maxSpeed(maxSpeed){}
-	...
-  };
+```cpp[6]
+include({{Car6Short.hpp}})
 ```
 <!-- .element: class="fragment" -->
 
@@ -586,42 +468,13 @@ Ibland behöver man ***återanvända*** logik från en konstruktor i en ***annan
 --
 
 ```cpp
-class Car {
-  private:
-    std::string makeAndModel
-	float maxSpeed;
-	float speed;
-	...
-  public:
-	Car() : speed(0.0f), maxSpeed(100){}
-    Car(float maxSpeed) : speed(0.0f){
-        if (maxSpeed > 240) maxSpeed = 240;
-        if (maxSpeed < 0) maxSpeed = 100;
-    }
-    Car(float maxSpeed, std::string makeAndModel) : speed(0.0f), makeAndModel(makeAndModel){
-        if (maxSpeed > 240) maxSpeed = 240;
-        if (maxSpeed < 0) maxSpeed = 100;
-    }
-};
+include({{Car7Short.hpp}})
 ```
 
 --
 
 ```cpp
-class Car {
-  private:
-    std::string makeAndModel
-	float maxSpeed;
-	float speed;
-	...
-  public:
-	Car() : speed(0.0f), maxSpeed(100){}
-    Car(float maxSpeed) : Car() {
-        if (maxSpeed > 240) maxSpeed = 240;
-        if (maxSpeed < 0) maxSpeed = 100;
-    }
-    Car(float maxSpeed, std::string makeAndModel) : Car(maxSpeed), makeAndModel(makeAndModel){}
-};
+include({{Car8Short.hpp}})
 ```
 
 ```bash
