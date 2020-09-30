@@ -89,7 +89,7 @@ class SomeClass {
 
 --
 
-Hur skapar man objekten från klasserna?
+Hur skapar man objekt från klasser?
 
 ```cpp[10]
 class SomeClass {
@@ -249,7 +249,81 @@ class Car {
 
 ### Nu provkör vi!
 
-```cpp[7-8| 10-12 | 13-14 | 7-8 ]
+```cpp[7-8| 10-12 | 13-14]
+class Car {
+  ...
+};
+
+int main() {
+    Car minVolvo242Gl;
+    minVolvo242Gl.setup(120);
+    
+    minVolvo242Gl.accelerate(1.0f); // Full gas!
+    minVolvo242Gl.accelerate(1.0f); // Bra drag!
+    minVolvo242Gl.accelerate(1.0f); // Nu börjar det gå lite fort..
+    minVolvo242Gl.applyBreak(42.0f); // Rådjur!!!
+    minVolvo242Gl.applyBreak(1.0f); // Puh!!! Vi överlevde!
+}
+```
+---
+
+## `static` 
+
+Hittills har alla funktioner och variabler varit ***medlemmar*** i klassen
+--
+
+De har varit ***knutna*** till en specifik ***instans*** 
+
+--
+
+Ex:
+
+```cpp
+Car volvo;
+volvoPv.setup(100);
+
+Car saab;
+saab900Turbo.setup(200);
+
+Car koeniggseggJeskoAbsolut;
+koeniggseggJeskoAbsolut.setup(483);
+```
+
+--
+
+Med **`static`** kan man skapa ***funktioner*** och ***variabler*** som ***delas*** av alla instanser av en ***klass***
+
+--
+
+```cpp
+#include <iostream>
+
+class MphConverter {
+  private:
+	static float mphToKmhFactor;
+
+  public:
+	static float toKmh(float mph){
+		return mph*mphToKmhFactor;
+	}
+};
+
+float MphConverter::mphToKmhFactor = 1.60934;
+
+int main(){
+	std::cout<<"60 mph is "<<MphConverter::toKmh(60)<<" Kmh";
+}
+```
+
+```
+60 mph is 96.5604 Kmh
+```
+
+---
+
+## Konstruktorer
+
+```cpp[7-8]
 class Car {
   ...
 };
@@ -268,9 +342,8 @@ int main() {
 hmm... inte så najs
 <!-- .element: class="fragment" -->
 
----
+--
 
-## Konstruktorer
 
 * Körs när objekt skapas
 * Tvinga medlemsvariabler att bli initialiserade
@@ -920,7 +993,6 @@ int main(){
 ---
 ## typedef
 
-## static 
 
 ## inline
 
