@@ -1,6 +1,8 @@
 changequote(`{{', `}}')
-<!doctype html>
-<html>
+define({{includecpp}},{{patsubst({{patsubst({{include($1)}}, <, &lt;)}},>, &gt;)}})
+	<!doctype html>
+	<html>
+
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -14,15 +16,15 @@ changequote(`{{', `}}')
 		<!-- Theme used for syntax highlighted code -->
 		<link rel="stylesheet" href="plugin/highlight/monokai.css" id="highlight-theme">
 	</head>
+
 	<body>
 		<div class="reveal">
 			<div class="slides">
-				<section data-separator="^---"
-					data-separator-vertical="^--"
-					data-separator-notes="^Note:"
-					data-markdown>
-					include({{content/content.md}})
-				  </section>
+				<section data-separator-vertical="^--" data-separator-notes="^Note:" data-markdown>
+					<script type="text/template">
+						include({{merged.md}})
+					</script>
+				</section>
 			</div>
 		</div>
 
@@ -39,8 +41,9 @@ changequote(`{{', `}}')
 				slideNumber: true,
 
 				// Learn about plugins: https://revealjs.com/plugins/
-				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+				plugins: [RevealMarkdown, RevealHighlight, RevealNotes]
 			});
 		</script>
 	</body>
-</html>
+
+	</html>

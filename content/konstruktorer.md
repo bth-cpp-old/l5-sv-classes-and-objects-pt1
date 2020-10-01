@@ -1,9 +1,9 @@
 ## Konstruktorer
 
 ```cpp[7-8]
-include({{CarShort.hpp}})
+incincludecpp({{CarShort.hpp}})
 
-include({{Car1Main.cpp}})
+incincludecpp({{Car1Main.cpp}})
 ```
 hmm... inte så najs
 <!-- .element: class="fragment" -->
@@ -17,7 +17,7 @@ hmm... inte så najs
 --
 
 ```cpp[1,11-14]
-include({{Car2.hpp}})
+includecpp({{Car2.hpp}})
 ```
 <!-- .element: class="r-stretch" -->
 
@@ -26,9 +26,9 @@ include({{Car2.hpp}})
 ### Nu provkör vi igen!
 
 ```cpp[6]
-include({{CarShort.hpp}})
+includecpp({{CarShort.hpp}})
 
-include({{Car2Main.cpp}})
+includecpp({{Car2Main.cpp}})
 ```
 Najsigare!
 
@@ -39,22 +39,22 @@ Najsigare!
 --
 
 ```cpp[6]
-include({{CarShort.hpp}})
+includecpp({{CarShort.hpp}})
 
-include({{Car2Main2.cpp}})
+includecpp({{Car2Main2.cpp}})
 ```
 
 --
 
 ```bash[2-5, 6-18]
-include({{Car2Main2CompOut.txt}})
+includecpp({{Car2Main2CompOut.txt}})
 ```
 <!-- .element: class="r-stretch" -->
 
 --
 
 ```cpp[11-13]
-include({{Car3.hpp}})
+includecpp({{Car3.hpp}})
 ```
 <!-- .element: class="r-stretch" -->
 
@@ -81,9 +81,9 @@ Man kan be kompilatorn skapa en dock
 ### Exempel:
 
 ```cpp[5]
-include({{SomeClass4.hpp}})
+incincludecpp({{SomeClass4.hpp}})
 
-include({{SomeClass4Main.cpp}})
+incincludecpp({{SomeClass4Main.cpp}})
 
 ```
 
@@ -101,13 +101,13 @@ Man kan också be kompilatorn ta bort en konstruktor
 ### Exempel:
 
 ```cpp[5,13]
-include({{SomeClass5.hpp}})
+incincludecpp({{SomeClass5.hpp}})
 
-include({{SomeClass5Main.cpp}})
+incincludecpp({{SomeClass5Main.cpp}})
 ```
 
 --
 
 ```bash
-include({{SomeClass5MainCompOut.txt}})
+incincludecpp({{SomeClass5MainCompOut.txt}})
 ```

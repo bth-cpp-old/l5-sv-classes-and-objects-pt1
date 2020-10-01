@@ -27,7 +27,7 @@ Med **`static`** kan man skapa ***funktioner*** och ***variabler*** som ***delas
 --
 
 ```cpp
-#include <iostream>
+#include &lt;iostream&gt;
 
 class MphConverter {
   private:
@@ -42,7 +42,7 @@ class MphConverter {
 float MphConverter::mphToKmhFactor = 1.60934;
 
 int main(){
-	std::cout<<"60 mph is "<<MphConverter::toKmh(60)<<" Kmh";
+	std::cout&lt;&lt;"60 mph is "&lt;&lt;MphConverter::toKmh(60)&lt;&lt;" Kmh";
 }
 ```
 

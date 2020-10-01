@@ -1,6 +1,8 @@
 
-<!doctype html>
-<html>
+
+	<!doctype html>
+	<html>
+
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -14,14 +16,13 @@
 		<!-- Theme used for syntax highlighted code -->
 		<link rel="stylesheet" href="plugin/highlight/monokai.css" id="highlight-theme">
 	</head>
+
 	<body>
 		<div class="reveal">
 			<div class="slides">
-				<section data-separator="^---"
-					data-separator-vertical="^--"
-					data-separator-notes="^Note:"
-					data-markdown>
-					# Introduktion till klasser och objekt
+				<section data-separator-vertical="^--" data-separator-notes="^Note:" data-markdown>
+					<script type="text/template">
+						# Introduktion till klasser och objekt
 
 Note:
 This will only display in the notes window.
@@ -102,17 +103,22 @@ class SomeClass {
 
 int main() {
     SomeClass myClass;
+    myClass.calcPiIsh());
 }
+
 ```
 <!-- .element: class="fragment" -->
 
 ```bash[|1|2|4]
-Warning(s):
-35285585/source.cpp:16:15: warning: unused variable 'myClass' \
-     [-Wunused-variable]
-    SomeClass myClass;
-              ^
-1 warning generated.
+Error(s):
+240841000/source.cpp:17:13: error: 'memberFunctionA' is a  \
+    member of 'SomeClass'
+    myClass.calcPiIsh();
+            ^
+240841000/source.cpp:7:7: note: implicitly declared private here
+        void calcPiIsh(){
+             ^
+1 error generated.
 ```
 <!-- .element: class="fragment" -->
 
@@ -129,9 +135,7 @@ class SomeClass {
 
 int main() {
     SomeClass myClass;
-    myClass.calcPiIsh());
 }
-
 ```
 
 ```bash[|1|6|7]
@@ -152,19 +156,16 @@ Error(s):
 	
 ```cpp[2,4]
 class SomeClass {
-  private:
-	float piIsh;
-  public:
-	void calcPiIsh(){
-		piIsh = 22.0f / 7.0f;
-	}
+ private:
+  float piIsh;
+
+ public:
+  void calcPiIsh() { piIsh = 22.0f / 7.0f; }
 };
 
 int main() {
     SomeClass myClass;
-    myClass.calcPiIsh());
 }
-
 
 ```
 
@@ -265,6 +266,7 @@ int main() {
     minVolvo242Gl.applyBreak(1.0f); // Puh!!! Vi överlevde!
 }
 ```
+
 ---
 
 ## `static` 
@@ -296,7 +298,7 @@ Med **`static`** kan man skapa ***funktioner*** och ***variabler*** som ***delas
 --
 
 ```cpp
-#include <iostream>
+#include &lt;iostream&gt;
 
 class MphConverter {
   private:
@@ -311,7 +313,7 @@ class MphConverter {
 float MphConverter::mphToKmhFactor = 1.60934;
 
 int main(){
-	std::cout<<"60 mph is "<<MphConverter::toKmh(60)<<" Kmh";
+	std::cout&lt;&lt;"60 mph is "&lt;&lt;MphConverter::toKmh(60)&lt;&lt;" Kmh";
 }
 ```
 
@@ -324,20 +326,9 @@ int main(){
 ## Konstruktorer
 
 ```cpp[7-8]
-class Car {
-  ...
-};
+incincludecpp(CarShort.hpp)
 
-int main() {
-    Car minVolvo242Gl;
-    minVolvo242Gl.setup(120);
-    
-    minVolvo242Gl.accelerate(1.0f); // Full gas!
-    minVolvo242Gl.accelerate(1.0f); // Bra drag!
-    minVolvo242Gl.accelerate(1.0f); // Nu börjar det gå lite fort..
-    minVolvo242Gl.applyBreak(42.0f); // Rådjur!!!
-    minVolvo242Gl.applyBreak(1.0f); // Puh!!! Vi överlevde!
-}
+incincludecpp(Car1Main.cpp)
 ```
 hmm... inte så najs
 <!-- .element: class="fragment" -->
@@ -494,20 +485,9 @@ Man kan be kompilatorn skapa en dock
 ### Exempel:
 
 ```cpp[5]
-class SomeClass {
-  private:
-	float piIsh;
-  public:
-	SomeClass() = default;
-		SomeClass(float customPi){
-        piIsh = customPi;
-    }
-};
+incincludecpp(SomeClass4.hpp)
 
-int main(){
-    SomeClass myPis[42];
-    SomeClass myPi(22.0f / 7.0f);
-}
+incincludecpp(SomeClass4Main.cpp)
 
 ```
 
@@ -525,34 +505,17 @@ Man kan också be kompilatorn ta bort en konstruktor
 ### Exempel:
 
 ```cpp[5,13]
-class SomeClass {
-  private:
-	float piIsh;
-  public:
-	SomeClass(int customPi) = delete;
-	SomeClass(float customPi){
-        piIsh = customPi;
-    }
-};
+incincludecpp(SomeClass5.hpp)
 
-int main(){
-    SomeClass myPi(22.0f / 7.0f);
-    SomeClass mySecondPi(42);
-}
+incincludecpp(SomeClass5Main.cpp)
 ```
 
 --
 
 ```bash
-Error(s):
-889997996/source.cpp:13:15: error: call to deleted constructor of 'SomeClass'
-    SomeClass mySecondPi(42);
-              ^          ~~
-889997996/source.cpp:5:2: note: 'SomeClass' has been explicitly marked deleted here
-        SomeClass(int customPi) = delete;
-        ^
-1 error generated.
+incincludecpp(SomeClass5MainCompOut.txt)
 ```
+
 
 ---
 
@@ -596,6 +559,7 @@ I ***kompileringen*** kommer namn att ***manglas***
 ### Varför
 
 Då vet kompilatorn vilken ***version*** av funktionen du anropar
+
 
 ---
 
@@ -661,6 +625,7 @@ Typ `p_maxSpeed`
 Eller...
 <!-- .element: class="fragment" -->
 
+
 ---
 
 ## `this`
@@ -688,8 +653,41 @@ class SomeClass {
 };
 ```
 
-blir
+är alltså egentligen
 <!-- .element: class="fragment" -->
+
+```cpp[5]
+class SomeClass {
+	float piIsh;
+
+	void calcPiIsh(){
+		(*this).piIsh = 22.0f / 7.0f;
+	}
+};
+```
+<!-- .element: class="fragment" -->
+
+--
+
+### `(*pointer).`
+
+kan också skrivas som
+
+### `pointer->`
+
+--
+
+```cpp[5]
+class SomeClass {
+	float piIsh;
+
+	void calcPiIsh(){
+		(*this).piIsh = 22.0f / 7.0f;
+	}
+};
+```
+
+är alltså samma som
 
 ```cpp[5]
 class SomeClass {
@@ -700,11 +698,18 @@ class SomeClass {
 	}
 };
 ```
-<!-- .element: class="fragment" -->
 
 --
 
-`this` kan också användas när en ***parameter** har ***samma namn*** som en ***medlemsvariabel***
+De betyder ***samma sak***, men
+
+### `->`
+
+***föredras*** oftast
+
+--
+
+`this` kan också användas när en ***parameter*** har ***samma namn*** som en ***medlemsvariabel***
 
 Som i fallet med klassen `Car`. Låt oss ta en ny titt!
 <!-- .element: class="fragment" -->
@@ -729,61 +734,136 @@ blir
 
 ```cpp[6-8]
 class Car {
-	private:
-	float speed;
-	float maxSpeed;
-  	...
-	Car(float maxSpeed){
-		speed = 0.0f;
-		this->maxSpeed = maxSpeed;
-	...
-};
+ private:
+  float speed;
+  float maxSpeed;
+  ...
+  Car(float maxSpeed) {
+    speed = 0.0f;
+    this->maxSpeed = maxSpeed;
+  }
+  ...
+  };
 ```
 <!-- .element: class="fragment" -->
 
+
 ---
 
-## Konstanter
+## Initialiseringslistor
 
-`const` gör att variabel inte kan ändras efter att den skapats.
-
-Det blir alltså en konstant
+Ett annat sätt att initialisera medlemsvariabler
 
 --
 
-```cpp[4]
+```cpp[6-9]
 class Car {
-	private:
-	float speed;
-	float maxSpeed;
-  	...
-	Car(float maxSpeed){
-		speed = 0.0f;
-		this->maxSpeed = maxSpeed;
-	...
-};
+ private:
+  float speed;
+  float maxSpeed;
+  ...
+  Car(float maxSpeed) {
+    speed = 0.0f;
+    this->maxSpeed = maxSpeed;
+  }
+  ...
+  };
+
 ```
 
 blir
 <!-- .element: class="fragment" -->
 
-```cpp[4]
+```cpp[6]
 class Car {
-	private:
-	float speed;
-	const float maxSpeed;
-  	...
-	Car(float maxSpeed){
-		speed = 0.0f;
-		this->maxSpeed = maxSpeed;
-	}
-	...
-};
+ private:
+  float speed;
+  float maxSpeed;
+  ...
+  Car(float maxSpeed) : speed(0.0f), maxSpeed(maxSpeed){}
+  ...
 };
 ```
 <!-- .element: class="fragment" -->
 
 --
+
+### Fördelar?
+
+Prestanda*
+<!-- .element: class="fragment" -->
+
+Färre kopieringar -> högre prestanda
+<!-- .element: class="fragment" -->
+
+\*Kompilatorn ***kan*** dock optimera bort kopieringar ***själv***
+<!-- .element: class="fragment" -->
+
+--
+
+### Fördelar?
+
+Mindre risk för fel
+
+Det händer att man glömmer `this`  exempelvis
+<!-- .element: class="fragment" -->
+
+
+---
+
+## Konstanter
+
+(som ni kanske vet)
+
+**`const`** gör att variabel ***inte*** kan ***ändras*** efter att den ***skapats***
+<!-- .element: class="fragment" -->
+
+Det blir alltså en konstant
+<!-- .element: class="fragment" -->
+
+--
+
+**`const`** kan användas både till ***medlemsvariabler*** och ***medlemsfunktioner*** 
+
+--
+
+Ex:
+
+```cpp[4]
+class Car {
+ private:
+  float speed;
+  float maxSpeed;
+  ...
+  Car(float maxSpeed) {
+    speed = 0.0f;
+    this->maxSpeed = maxSpeed;
+  }
+  ...
+  };
+```
+
+--
+
+Blir
+
+```cpp[4]
+class Car {
+ private:
+  float speed;
+  const float maxSpeed;
+  ...
+  Car(float maxSpeed) {
+    speed = 0.0f;
+    this->maxSpeed = maxSpeed;
+  }
+  ...
+  };
+```
+
+--
+
+### Men det kompilerar ju inte?!
 
 ```bash[2-4 | 9-12]
 Error(s):
@@ -807,65 +887,26 @@ Error(s):
 ```
 <!-- .element: class="r-stretch" -->
 
----
+--
 
-## Initialiseringslistor
-
-Ett annat sätt att initialisera medlemsvariabler
+Kompileringsfelet fixar man med ***initialiseringslistor***!
 
 --
 
-```cpp[6-9]
+```cpp[4]
 class Car {
-	private:
-	float speed;
-	const float maxSpeed;
-  	...
-	Car(float maxSpeed){
-		speed = 0.0f;
-		this->maxSpeed = maxSpeed;
-	}
-	...
-};
-
-```
-
-blir
-<!-- .element: class="fragment" -->
-
-```cpp[6]
-class Car {
-	private:
-	float speed;
-	const float maxSpeed;
-  	...
-	Car(float maxSpeed) : speed(0.0f), maxSpeed(maxSpeed){}
-	...
+ private:
+  float speed;
+  const float maxSpeed;
+  ...
+  Car(float maxSpeed) : speed(0.0f), maxSpeed(maxSpeed){}
+  ...
 };
 ```
-<!-- .element: class="fragment" -->
 
 --
 
-Fördelar?
-
-Prestanda*
-<!-- .element: class="fragment" -->
-
-Färre kopieringar -> högre prestanda
-<!-- .element: class="fragment" -->
-
-\*Kompilatorn **kan** dock optimera bort kopieringar
-<!-- .element: class="fragment" -->
-
---
-
-Fördelar?
-
-Mindre risk för fel
-
-Det händer att man glömmer `this?  exempelvis
-<!-- .element: class="fragment" -->
+### `const` medlemsfunktioner
 
 ---
 
@@ -925,6 +966,7 @@ Logik kan ***återanvändas***
 
 Kan ***inte*** kombineras med ***initialiseringslistor***
 
+
 ---
 
 ## struct
@@ -936,25 +978,13 @@ Men, allt är **`public`** istället för **`private`** per ***default***
 --
 
 ```cpp[1]
-class SomeClass {
-	float piIsh;
-
-	void calcPiIsh(){
-		piIsh = 22.0f / 7.0f;
-	}
-};
+incincludecpp(SomeClass2.hpp)
 ```
 
 blir
 
 ```cpp[1]
-struct SomeStruct {
-	float piIsh;
-
-	void calcPiIsh(){
-		piIsh = 22.0f / 7.0f;
-	}
-};
+incincludecpp(SomeStruct.hpp)
 ```
 
 --
@@ -964,6 +994,7 @@ Använd **`struct`** istället för `class` när du vill ***gruppera data*** uta
 --
 
 Exempelvis för ***aggregatklasser***
+
 
 ---
 
@@ -978,7 +1009,9 @@ Vi kommer gå igenom vad detta är vid en senare föreläsning :-)
 
 --
 
-### Med initialiseringslista
+Fördel? De kan initieras med en ***Initialiseringslista***
+
+--
 
 ```cpp
 struct Vec3f { float x, y, z; };
@@ -991,14 +1024,122 @@ int main(){
 ```
 
 ---
-## typedef
+
+## Aliasing
+
+```cpp
+typedef int cm;
+```
+
+eller
+
+```cpp
+using cm = int;
+```
+
+--
+
+Används som typ:
+
+```cpp
+struct Box {
+    cm length;
+    cm height;
+    cm width;
+};
+```
+
+--
+
+### Praktiska att använda ihop med klasser
+
+```cpp
+struct Box {
+    using cm = int;
+    cm length;
+    cm height;
+    cm width;
+};
+
+int main(){
+    Box b;
+    Box::cm length = 20;
+    b.length = length;
+}
+```
+
+--
+
+### Nackdelar
+
+```cpp
+using cm = int;
+using inch = int;
+
+struct Box {
+    cm length;
+    cm height;
+    cm width;
+};
+
+int main(){
+    Box b;
+    inch length = 20;
+    b.length = length;
+}
+```
+
+--
+
+Alias är ***inte riktiga*** typer, de är ***svaga*** (eng: weak) typer
 
 
-## inline
+
+---
+
+## `inline`
+
+***Tipsar*** om att en funktion kan ***inlineas***
+
+--
+
+Vid ***inlining*** ersätts funktionsanropet med en ***copy-paste*** av funktionsdefinitionen
+
+--
+
+Ex:
+
+```cpp
+inline void add(int a, int b){
+    return a+b:
+}
+
+int main(){
+    int result = add (43, 1338);
+}
+```
+
+blir:
+
+```cpp
+int main(){
+    int result = 43 + 1338;
+}
+```
+
+--
+
+I verkligheten kommer din ***kompilator*** själv ***avgöra*** vad som inlineas och inte
+
+**`inline`** är ett ***tips*** till kompilatorn, ***ingen instruktion***
+
+---
 
 ## Best practices
 
-				  </section>
+###  cpp och hpp
+					</script>
+				</section>
 			</div>
 		</div>
 
@@ -1015,8 +1156,9 @@ int main(){
 				slideNumber: true,
 
 				// Learn about plugins: https://revealjs.com/plugins/
-				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+				plugins: [RevealMarkdown, RevealHighlight, RevealNotes]
 			});
 		</script>
 	</body>
-</html>
+
+	</html>

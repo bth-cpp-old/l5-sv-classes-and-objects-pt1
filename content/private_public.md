@@ -42,7 +42,7 @@ Ger möjlighet till *Abstraktion* och *Inkapsling*
 --
 
 ```cpp[|3-4|6-9|11-22]
-include({{Car1.hpp}})
+includecpp({{Car1.hpp}})
 ```
 <!-- .element: class="r-stretch" -->
 
@@ -51,7 +51,7 @@ include({{Car1.hpp}})
 ### Nu provkör vi!
 
 ```cpp[7-8| 10-12 | 13-14]
-include({{CarShort.hpp}})
+includecpp({{CarShort.hpp}})
 
-include({{Car1Main.cpp}})
+includecpp({{Car1Main.cpp}})
 ```

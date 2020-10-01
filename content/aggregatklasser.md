@@ -9,7 +9,9 @@ Vi kommer gå igenom vad detta är vid en senare föreläsning :-)
 
 --
 
-### Med initialiseringslista
+Fördel? De kan initieras med en ***Initialiseringslista***
+
+--
 
 ```cpp
 struct Vec3f { float x, y, z; };

@@ -26,7 +26,7 @@ Med klasser kan man dela upp koden modulärt
 <!-- .slide: data-transition="slide-in fade-out" -->
 
 ```cpp[1|2|4-6]
-include({{SomeClass1.hpp}})
+includecpp({{SomeClass1.hpp}})
 ```
 
 --
@@ -35,7 +35,7 @@ include({{SomeClass1.hpp}})
 Funktioner i ett objekt kan nå variablerna i detsamma
 
 ```cpp[4-6]
-include({{SomeClass2.hpp}})
+includecpp({{SomeClass2.hpp}})
 ```
 <!-- .element: class="fragment" -->
 
@@ -44,27 +44,27 @@ include({{SomeClass2.hpp}})
 Hur skapar man objekt från klasser?
 
 ```cpp[10]
-include({{SomeClass2.hpp}})
+includecpp({{SomeClass2.hpp}})
 
-include({{SomeClassMain1.cpp}})
+includecpp({{SomeClass2Main.cpp}})
 ```
 <!-- .element: class="fragment" -->
 
 ```bash[|1|2|4]
-include({{SomeClassMain1CompOut.txt}})
+includecpp({{SomeClass2MainCompOut.txt}})
 ```
 <!-- .element: class="fragment" -->
 
 --
 
 ```cpp[12]
-include({{SomeClass2.hpp}})
+includecpp({{SomeClass2.hpp}})
 
-include({{SomeClassMain2.cpp}})
+includecpp({{SomeClass1Main.cpp}})
 ```
 
 ```bash[|1|6|7]
-include({{SomeClassMain2CompOut.txt}})
+includecpp({{SomeClass2MainCompOut.txt}})
 ```
 <!-- .element: class="fragment" -->
 
@@ -72,9 +72,9 @@ include({{SomeClassMain2CompOut.txt}})
 <!-- .slide: data-transition="fade" -->
 	
 ```cpp[2,4]
-include({{SomeClass3.hpp}})
+includecpp({{SomeClass3.hpp}})
 
-include({{SomeClassMain2.cpp}})
+includecpp({{SomeClass1Main.cpp}})
 
 ```
 

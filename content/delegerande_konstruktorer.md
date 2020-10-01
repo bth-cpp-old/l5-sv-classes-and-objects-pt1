@@ -5,13 +5,13 @@ Ibland behöver man ***återanvända*** logik från en konstruktor i en ***annan
 --
 
 ```cpp
-include({{Car7Short.hpp}})
+includecpp({{Car7Short.hpp}})
 ```
 
 --
 
 ```cpp
-include({{Car8Short.hpp}})
+includecpp({{Car8Short.hpp}})
 ```
 
 --

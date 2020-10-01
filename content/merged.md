@@ -1,13 +1,4 @@
-# Introduktion till klasser och objekt
-
-Note:
-This will only display in the notes window.
-yhjj
-hjhkhk
-
-hjh
-* a
-* b
+include({{content/introduktion.md}})
 
 ---
 
@@ -39,12 +30,11 @@ include({{this.md}})
 
 ---
 
-include({{konstanter.md}})
-
+include({{initialiseringslistor.md}})
 
 ---
 
-include({{initialiseringslistor.md}})
+include({{konstanter.md}})
 
 ---
 
@@ -59,9 +49,13 @@ include({{struct.md}})
 include({{aggregatklasser.md}})
 
 ---
-## typedef
 
+include({{aliasing.md}})
 
-## inline
+---
 
-## Best practices
+include({{inline.md}})
+
+---
+
+include({{best_practices.md}})
