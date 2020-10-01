@@ -738,6 +738,8 @@ class Car {
   float speed;
   float maxSpeed;
   ...
+
+ public:
   Car(float maxSpeed) {
     speed = 0.0f;
     this->maxSpeed = maxSpeed;
@@ -762,6 +764,8 @@ class Car {
   float speed;
   float maxSpeed;
   ...
+
+ public:
   Car(float maxSpeed) {
     speed = 0.0f;
     this->maxSpeed = maxSpeed;
@@ -823,7 +827,7 @@ Det blir alltså en konstant
 
 --
 
-**`const`** kan användas både till ***medlemsvariabler*** och ***medlemsfunktioner*** 
+**`const`** kan användas både till ***medlemsvariabler***, ***parametrar*** och ***medlemsfunktioner*** 
 
 --
 
@@ -835,6 +839,8 @@ class Car {
   float speed;
   float maxSpeed;
   ...
+
+ public:
   Car(float maxSpeed) {
     speed = 0.0f;
     this->maxSpeed = maxSpeed;
@@ -853,6 +859,8 @@ class Car {
   float speed;
   const float maxSpeed;
   ...
+
+ public:
   Car(float maxSpeed) {
     speed = 0.0f;
     this->maxSpeed = maxSpeed;
@@ -891,22 +899,59 @@ Error(s):
 
 Kompileringsfelet fixar man med ***initialiseringslistor***!
 
---
-
-```cpp[4]
+```cpp[8]
 class Car {
  private:
   float speed;
   const float maxSpeed;
   ...
+
+ public:
   Car(float maxSpeed) : speed(0.0f), maxSpeed(maxSpeed){}
   ...
 };
 ```
+<!-- .element: class="fragment" -->
 
 --
 
-### `const` medlemsfunktioner
+### `const`-parametrar
+
+Parametrar som är **`const`** kan ***inte*** modifieras ***i funktionen***
+
+```cpp[8]
+class Car {
+ private:
+  float speed;
+  const float maxSpeed;
+  ...
+
+ public:
+  Car(const float maxSpeed) : speed(0.0f), maxSpeed(maxSpeed){}
+  ...
+};
+```
+<!-- .element: class="fragment" -->
+
+--
+
+### `const`-medlemsfunktioner
+
+En ***medlemsfunktion*** som är **`const`** kan ***inte*** modifiera ***medlemsvariabler***
+
+```cpp[8]
+class Car {
+ private:
+  float speed;
+  const float maxSpeed;
+  ...
+
+ public:
+  float getSpeed() const { return speed; }
+  ...
+};
+```
+<!-- .element: class="fragment" -->
 
 ---
 
@@ -1137,7 +1182,85 @@ I verkligheten kommer din ***kompilator*** själv ***avgöra*** vad som inlineas
 
 ## Best practices
 
-###  cpp och hpp
+--
+
+###  `SomeClass.hpp` och `SomeClass.cpp`
+
+Du bör lägga din ***klassdeklaration*** i en `*.hpp`-fil
+
+```cpp
+class Car {
+ private:
+  float speed;
+  const float maxSpeed;
+
+  void sanityCheckSpeed();
+
+ public:
+  Car() : speed(0.0f), maxSpeed(100) {}
+  Car(const float maxSpeed) : speed(0.0f), maxSpeed(maxSpeed) {}
+  void accelerate(float pedalFactor);
+  void applyBreak(float pedalFactor);
+  float getSpeed() const;
+};
+```
+
+--
+
+och din ***klassdefinition*** i en `*.cpp`-fil
+
+```cpp
+#include <Car.hpp>
+
+void Car::sanityCheckSpeed() {
+  if (speed < 0) speed = 0.0f;
+  if (speed > maxSpeed) speed = maxSpeed;
+}
+
+void Car::accelerate(float pedalFactor) {
+  speed += 10 * pedalFactor;
+  sanityCheckSpeed();
+}
+void Car::applyBreak(float pedalFactor) {
+  speed -= 10 * pedalFactor;
+  sanityCheckSpeed();
+}
+float Car::getSpeed() const { return speed; }
+```
+<!-- .element: class="r-stretch" -->
+
+--
+
+## Ska man ha `public` eller `private` först?
+
+```cpp
+class Car {
+ public:
+  Car() : speed(0.0f), maxSpeed(100) {}
+  Car(const float maxSpeed) : speed(0.0f), maxSpeed(maxSpeed) {}
+  void accelerate(float pedalFactor);
+  void applyBreak(float pedalFactor);
+  float getSpeed() const;
+
+ private:
+  float speed;
+  const float maxSpeed;
+
+  void sanityCheckSpeed();
+};
+```
+
+--
+
+Spelar ingen roll!
+<!-- .element: class="fragment" -->
+
+Välj en stil och följ den konsekvent!
+<!-- .element: class="fragment" -->
+
+--
+
+
 					</script>
 				</section>
 			</div>

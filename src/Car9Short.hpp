@@ -5,6 +5,6 @@ class Car {
   ...
 
  public:
-  Car(float maxSpeed) : speed(0.0f), maxSpeed(maxSpeed){}
+  Car(const float maxSpeed) : speed(0.0f), maxSpeed(maxSpeed){}
   ...
 };

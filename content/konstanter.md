@@ -10,7 +10,7 @@ Det blir alltså en konstant
 
 --
 
-**`const`** kan användas både till ***medlemsvariabler*** och ***medlemsfunktioner*** 
+**`const`** kan användas både till ***medlemsvariabler***, ***parametrar*** och ***medlemsfunktioner*** 
 
 --
 
@@ -42,12 +42,29 @@ includecpp({{Car5ShortMainCompOut.txt}})
 
 Kompileringsfelet fixar man med ***initialiseringslistor***!
 
---
-
-```cpp[4]
+```cpp[8]
 includecpp({{Car6.1Short.hpp}})
 ```
+<!-- .element: class="fragment" -->
 
 --
 
-### `const` medlemsfunktioner
+### `const`-parametrar
+
+Parametrar som är **`const`** kan ***inte*** modifieras ***i funktionen***
+
+```cpp[8]
+includecpp({{Car9Short.hpp}})
+```
+<!-- .element: class="fragment" -->
+
+--
+
+### `const`-medlemsfunktioner
+
+En ***medlemsfunktion*** som är **`const`** kan ***inte*** modifiera ***medlemsvariabler***
+
+```cpp[8]
+includecpp({{Car10Short.hpp}})
+```
+<!-- .element: class="fragment" -->
