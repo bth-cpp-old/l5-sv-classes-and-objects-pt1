@@ -26,14 +26,18 @@ includecpp({{Car11.cpp}})
 ```cpp
 includecpp({{Car11.2.hpp}})
 ```
+<!-- .element: class="fragment" -->
 
 --
 
 Spelar ingen roll!
-<!-- .element: class="fragment" -->
 
 Välj en stil och följ den konsekvent!
 <!-- .element: class="fragment" -->
 
 --
 
+### Använd initialiseringlistor!
+
+Risken för buggar minskar rejält
+<!-- .element: class="fragment" -->
