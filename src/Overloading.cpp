@@ -1,9 +1,9 @@
-#include <cassert>
+#include <iostream>
 
 int f(){ return 42; }
 int f(int i){ return i; }
 
 int main(){
-    assert( f() == 42);
-    assert( f(7) == 7);
+    std::cout<<f()<<std::endl;
+    std::cout<<f(7)<<std::endl;
 }

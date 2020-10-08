@@ -27,24 +27,9 @@ Med **`static`** kan man skapa ***funktioner*** och ***variabler*** som ***delas
 --
 
 ```cpp
-#include &lt;iostream&gt;
-
-class MphConverter {
-  private:
-	static float mphToKmhFactor;
-
-  public:
-	static float toKmh(float mph){
-		return mph*mphToKmhFactor;
-	}
-};
-
-float MphConverter::mphToKmhFactor = 1.60934;
-
-int main(){
-	std::cout&lt;&lt;"60 mph is "&lt;&lt;MphConverter::toKmh(60)&lt;&lt;" Kmh";
-}
+includecpp({{MphConverter.cpp}})
 ```
+<!-- .element: class="r-stretch" -->
 
 ```
 60 mph is 96.5604 Kmh

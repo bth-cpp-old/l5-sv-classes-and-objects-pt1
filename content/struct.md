@@ -7,13 +7,13 @@ Men, allt är **`public`** istället för **`private`** per ***default***
 --
 
 ```cpp[1]
-incincludecpp({{SomeClass2.hpp}})
+includecpp({{SomeClass2.hpp}})
 ```
 
 blir
 
 ```cpp[1]
-incincludecpp({{SomeStruct.hpp}})
+includecpp({{SomeStruct.hpp}})
 ```
 
 --

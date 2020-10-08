@@ -1,4 +1,4 @@
-include({{content/introduktion.md}})
+include({{introduktion.md}})
 
 ---
 
@@ -37,6 +37,8 @@ include({{initialiseringslistor.md}})
 include({{konstanter.md}})
 
 ---
+
+FEL NEDAN
 
 include({{delegerande_konstruktorer.md}})
 

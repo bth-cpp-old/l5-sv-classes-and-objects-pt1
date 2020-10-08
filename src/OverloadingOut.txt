@@ -1,0 +1,4 @@
+Compilation time: 0.52 sec, absolute running time: 0.16 sec
+
+42
+7

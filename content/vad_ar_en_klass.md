@@ -46,35 +46,35 @@ Hur skapar man objekt från klasser?
 ```cpp[10]
 includecpp({{SomeClass2.hpp}})
 
-includecpp({{SomeClass2Main.cpp}})
+includecpp({{SomeClass2Main1.cpp}})
 ```
 <!-- .element: class="fragment" -->
 
-```bash[|1|2|4]
-includecpp({{SomeClass2MainCompOut.txt}})
+```bash[|1|2-3]
+includecpp({{SomeClass2MainCompOut1.txt}})
 ```
 <!-- .element: class="fragment" -->
 
 --
 
-```cpp[12]
+```cpp[11]
 includecpp({{SomeClass2.hpp}})
 
-includecpp({{SomeClass1Main.cpp}})
+includecpp({{SomeClass2Main2.cpp}})
 ```
 
-```bash[|1|6|7]
-includecpp({{SomeClass2MainCompOut.txt}})
+```bash[|1|2-3|5-6]
+includecpp({{SomeClass2MainCompOut2.txt}})
 ```
 <!-- .element: class="fragment" -->
 
 --
 <!-- .slide: data-transition="fade" -->
 	
-```cpp[2,4]
+```cpp[2,5]
 includecpp({{SomeClass3.hpp}})
 
-includecpp({{SomeClass1Main.cpp}})
+includecpp({{SomeClass2Main2.cpp}})
 
 ```
 

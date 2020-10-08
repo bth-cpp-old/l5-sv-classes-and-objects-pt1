@@ -1,4 +1,10 @@
 
+
+
+
+
+
+
 	<!doctype html>
 	<html>
 
@@ -222,8 +228,8 @@ class Car {
 	float maxSpeed;
   
 	void sanityCheckSpeed(){
-		if (speed &lt; 0) speed = 0.0f;
-		if (speed &gt; maxSpeed) speed = maxSpeed;
+		if (speed < 0) speed = 0.0f;
+		if (speed > maxSpeed) speed = maxSpeed;
 	}
   public:
 	void setup(float p_maxSpeed){
@@ -294,7 +300,7 @@ Med **`static`** kan man skapa ***funktioner*** och ***variabler*** som ***delas
 --
 
 ```cpp
-#include &lt;iostream&gt;
+#include <iostream>
 
 class MphConverter {
   private:
@@ -309,7 +315,7 @@ class MphConverter {
 float MphConverter::mphToKmhFactor = 1.60934;
 
 int main(){
-	std::cout&lt;&lt;"60 mph is "&lt;&lt;MphConverter::toKmh(60)&lt;&lt;" Kmh";
+	std::cout<<"60 mph is "<<MphConverter::toKmh(60)<<" Kmh";
 }
 ```
 <!-- .element: class="r-stretch" -->
@@ -362,8 +368,8 @@ class Car {
 	float maxSpeed;
   
 	void sanityCheckSpeed(){
-		if (speed &lt; 0) speed = 0.0f;
-		if (speed &gt; maxSpeed) speed = maxSpeed;
+		if (speed < 0) speed = 0.0f;
+		if (speed > maxSpeed) speed = maxSpeed;
 	}
   public:
 	Car(float p_maxSpeed){
@@ -427,15 +433,15 @@ s.cpp:24:9: error: no matching constructor for initialization of 'Car [10]'
     Car cars[10];
         ^
 s.cpp:11:5: note: candidate constructor not viable: \
-		requires single argument 'maxSpeed'&#44; but no arguments were provided
+		requires single argument 'maxSpeed', but no arguments were provided
     Car(float maxSpeed) : maxSpeed(maxSpeed){}
     ^
 s.cpp:1:7: note: candidate constructor (the implicit copy constructor) \
-		not viable: requires 1 argument&#44; but 0 were provided \
+		not viable: requires 1 argument, but 0 were provided \
 class Car {
       ^
 s.cpp:1:7: note: candidate constructor (the implicit move constructor) \
-	not viable: requires 1 argument&#44; but 0 were provided \
+	not viable: requires 1 argument, but 0 were provided \
 1 error generated.
 ```
 <!-- .element: class="r-stretch" -->
@@ -449,8 +455,8 @@ class Car {
 	float maxSpeed;
 	
 	void sanityCheckSpeed(){
-		if (speed &lt; 0) speed = 0.0f;
-		if (speed &gt; maxSpeed) speed = maxSpeed;
+		if (speed < 0) speed = 0.0f;
+		if (speed > maxSpeed) speed = maxSpeed;
 	}
   public:
 	Car(){
@@ -568,19 +574,19 @@ Eller:
 Det fungerar även på vanliga funktioner...
 
 ```cpp
-#include &lt;iostream&gt;
+#include <iostream>
 
 int f(){ return 42; }
 int f(int i){ return i; }
 
 int main(){
-    std::cout&lt;&lt;f()&lt;&lt;std::endl;
-    std::cout&lt;&lt;f(7)&lt;&lt;std::endl;
+    std::cout<<f()<<std::endl;
+    std::cout<<f(7)<<std::endl;
 }
 ```
 
 ```bash
-Compilation time: 0.52 sec&#44; absolute running time: 0.16 sec
+Compilation time: 0.52 sec, absolute running time: 0.16 sec
 
 42
 7
@@ -736,7 +742,7 @@ class SomeClass {
 	float piIsh;
 
 	void calcPiIsh(){
-		this-&gt;piIsh = 22.0f / 7.0f;
+		this->piIsh = 22.0f / 7.0f;
 	}
 };
 ```
@@ -784,7 +790,7 @@ class Car {
  public:
   Car(float maxSpeed) {
     speed = 0.0f;
-    this-&gt;maxSpeed = maxSpeed;
+    this->maxSpeed = maxSpeed;
   }
   ...
   };
@@ -810,7 +816,7 @@ class Car {
  public:
   Car(float maxSpeed) {
     speed = 0.0f;
-    this-&gt;maxSpeed = maxSpeed;
+    this->maxSpeed = maxSpeed;
   }
   ...
   };
@@ -826,7 +832,7 @@ class Car {
   float speed;
   float maxSpeed;
   ...
-  Car(float maxSpeed) : speed(0.0f)&#44; maxSpeed(maxSpeed){}
+  Car(float maxSpeed) : speed(0.0f), maxSpeed(maxSpeed){}
   ...
 };
 ```
@@ -885,7 +891,7 @@ class Car {
  public:
   Car(float maxSpeed) {
     speed = 0.0f;
-    this-&gt;maxSpeed = maxSpeed;
+    this->maxSpeed = maxSpeed;
   }
   ...
   };
@@ -905,7 +911,7 @@ class Car {
  public:
   Car(float maxSpeed) {
     speed = 0.0f;
-    this-&gt;maxSpeed = maxSpeed;
+    this->maxSpeed = maxSpeed;
   }
   ...
   };
@@ -949,7 +955,7 @@ class Car {
   ...
 
  public:
-  Car(float maxSpeed) : speed(0.0f)&#44; maxSpeed(maxSpeed){}
+  Car(float maxSpeed) : speed(0.0f), maxSpeed(maxSpeed){}
   ...
 };
 ```
@@ -969,7 +975,7 @@ class Car {
   ...
 
  public:
-  Car(const float maxSpeed) : speed(0.0f)&#44; maxSpeed(maxSpeed){}
+  Car(const float maxSpeed) : speed(0.0f), maxSpeed(maxSpeed){}
   ...
 };
 ```
@@ -997,8 +1003,6 @@ class Car {
 
 ---
 
-FEL NEDAN
-
 ## Delegerande Konstruktorer
 
 Ibland behöver man ***återanvända*** logik från en konstruktor i en ***annan***
@@ -1013,19 +1017,18 @@ class Car {
 	float speed;
 	...
   public:
-	Car() : speed(0.0f)&#44; maxSpeed(100){}
+	Car() : speed(0.0f), maxSpeed(100){}
     Car(float maxSpeed) : speed(0.0f){
-        if (maxSpeed &gt; 240) maxSpeed = 240;
-        if (maxSpeed &lt; 0) maxSpeed = 100;
+        if (maxSpeed > 240) maxSpeed = 240;
+        if (maxSpeed < 0) maxSpeed = 100;
     }
-    Car(float maxSpeed&#44; std::string makeAndModel)
-		: speed(0.0f)&#44; makeAndModel(makeAndModel){
-        if (maxSpeed &gt; 240) maxSpeed = 240;
-        if (maxSpeed &lt; 0) maxSpeed = 100;
+    Car(float maxSpeed, std::string makeAndModel)
+		: speed(0.0f), makeAndModel(makeAndModel){
+        if (maxSpeed > 240) maxSpeed = 240;
+        if (maxSpeed < 0) maxSpeed = 100;
     }
 };
 ```
-<!-- .element: class="r-stretch" -->
 
 --
 
@@ -1037,17 +1040,16 @@ class Car {
 	  float speed;
 	  ...
   public:
-	  Car() : speed(0.0f)&#44; maxSpeed(100){}
+	  Car() : speed(0.0f), maxSpeed(100){}
     Car(float maxSpeed) : Car() {
-        if (maxSpeed &gt; 240) maxSpeed = 240;
-        if (maxSpeed &lt; 0) maxSpeed = 100;
+        if (maxSpeed > 240) maxSpeed = 240;
+        if (maxSpeed < 0) maxSpeed = 100;
     }
-    Car(float maxSpeed&#44; std::string makeAndModel): Car(maxSpeed){
-        this-&gt;makeAndModel = makeAndModel;
+    Car(float maxSpeed, std::string makeAndModel): Car(maxSpeed){
+        this->makeAndModel = makeAndModel;
     }
 };
 ```
-<!-- .element: class="r-stretch" -->
 
 --
 
@@ -1069,25 +1071,13 @@ Men, allt är **`public`** istället för **`private`** per ***default***
 --
 
 ```cpp[1]
-class SomeClass {
-	float piIsh;
-
-	void calcPiIsh(){
-		piIsh = 22.0f / 7.0f;
-	}
-};
+incincludecpp(SomeClass2.hpp)
 ```
 
 blir
 
 ```cpp[1]
-struct SomeStruct {
-	float piIsh;
-
-	void calcPiIsh(){
-		piIsh = 22.0f / 7.0f;
-	}
-};
+incincludecpp(SomeStruct.hpp)
 ```
 
 --
@@ -1255,8 +1245,8 @@ class Car {
   void sanityCheckSpeed();
 
  public:
-  Car() : speed(0.0f)&#44; maxSpeed(100) {}
-  Car(const float maxSpeed) : speed(0.0f)&#44; maxSpeed(maxSpeed) {}
+  Car() : speed(0.0f), maxSpeed(100) {}
+  Car(const float maxSpeed) : speed(0.0f), maxSpeed(maxSpeed) {}
   void accelerate(float pedalFactor);
   void applyBreak(float pedalFactor);
   float getSpeed() const;
@@ -1268,11 +1258,11 @@ class Car {
 och din ***klassdefinition*** i en `*.cpp`-fil
 
 ```cpp
-#include &lt;Car.hpp&gt;
+#include <Car.hpp>
 
 void Car::sanityCheckSpeed() {
-  if (speed &lt; 0) speed = 0.0f;
-  if (speed &gt; maxSpeed) speed = maxSpeed;
+  if (speed < 0) speed = 0.0f;
+  if (speed > maxSpeed) speed = maxSpeed;
 }
 
 void Car::accelerate(float pedalFactor) {
@@ -1294,8 +1284,8 @@ float Car::getSpeed() const { return speed; }
 ```cpp
 class Car {
  public:
-  Car() : speed(0.0f)&#44; maxSpeed(100) {}
-  Car(const float maxSpeed) : speed(0.0f)&#44; maxSpeed(maxSpeed) {}
+  Car() : speed(0.0f), maxSpeed(100) {}
+  Car(const float maxSpeed) : speed(0.0f), maxSpeed(maxSpeed) {}
   void accelerate(float pedalFactor);
   void applyBreak(float pedalFactor);
   float getSpeed() const;

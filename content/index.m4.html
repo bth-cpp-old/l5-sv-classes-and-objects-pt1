@@ -1,5 +1,8 @@
-changequote(`{{', `}}')
-define({{includecpp}},{{patsubst({{patsubst({{include($1)}}, <, &lt;)}},>, &gt;)}})
+changequote(`{{', `}}')dnl
+define({{filter}},{{esyscmd({{sed -e 's/,/\&#44;/g' -e 's/</\&lt;/g' -e 's/>/\&gt;/g' -e 's/,/\&#44;/g' -n -e '$2,$3 p' src/$1 }})}})dnl
+define({{includecpp}},{{filter($1,{{1}},{{$}})}})dnl
+define({{includecpplines}},{{filter($1,$2,$3)}})dnl
+
 	<!doctype html>
 	<html>
 

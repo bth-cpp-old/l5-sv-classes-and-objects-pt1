@@ -1,18 +1,24 @@
 ## Konstruktorer
 
-```cpp[7-8]
-incincludecpp({{CarShort.hpp}})
+--
 
-incincludecpp({{Car1Main.cpp}})
+```cpp[7-8]
+includecpp({{CarShort.hpp}})
+
+includecpp({{Car1Main.cpp}})
 ```
 hmm... inte så najs
 <!-- .element: class="fragment" -->
 
 --
 
+### Konstruktorer...
 
-* Körs när objekt skapas
-* Tvinga medlemsvariabler att bli initialiserade
+Körs när objekt skapas
+<!-- .element: class="fragment" -->
+
+Kan användas tll att ***tvinga medlemsvariabler*** att bli ***initialiserade***
+<!-- .element: class="fragment" -->
 
 --
 
@@ -46,14 +52,14 @@ includecpp({{Car2Main2.cpp}})
 
 --
 
-```bash[2-5, 6-18]
+```bash[2-3 | 5-14]
 includecpp({{Car2Main2CompOut.txt}})
 ```
 <!-- .element: class="r-stretch" -->
 
 --
 
-```cpp[11-13]
+```cpp[11-14]
 includecpp({{Car3.hpp}})
 ```
 <!-- .element: class="r-stretch" -->
@@ -81,9 +87,9 @@ Man kan be kompilatorn skapa en dock
 ### Exempel:
 
 ```cpp[5]
-incincludecpp({{SomeClass4.hpp}})
+includecpp({{SomeClass4.hpp}})
 
-incincludecpp({{SomeClass4Main.cpp}})
+includecpp({{SomeClass4Main.cpp}})
 
 ```
 
@@ -100,14 +106,13 @@ Man kan också be kompilatorn ta bort en konstruktor
 
 ### Exempel:
 
-```cpp[5,13]
-incincludecpp({{SomeClass5.hpp}})
+```cpp[6,12]
+includecpp({{SomeClass5.hpp}})
 
-incincludecpp({{SomeClass5Main.cpp}})
+includecpp({{SomeClass5Main.cpp}})
 ```
 
---
-
-```bash
-incincludecpp({{SomeClass5MainCompOut.txt}})
+```bash[2-3|5-6]
+includecpp({{SomeClass5MainCompOut.txt}})
 ```
+<!-- .element: class="fragment" -->

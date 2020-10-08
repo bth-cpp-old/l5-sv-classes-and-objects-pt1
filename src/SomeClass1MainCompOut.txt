@@ -1,6 +1,0 @@
-Warning(s):
-35285585/source.cpp:16:15: warning: unused variable 'myClass' \
-     [-Wunused-variable]
-    SomeClass myClass;
-              ^
-1 warning generated.

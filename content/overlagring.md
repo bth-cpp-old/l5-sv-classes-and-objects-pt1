@@ -13,7 +13,7 @@ includecpp({{Overloading.cpp}})
 ```
 
 ```bash
-Compilation time: 0.12 sec, absolute running time: 0.18 sec
+includecpp({{OverloadingOut.txt}})
 ```
 
 --
