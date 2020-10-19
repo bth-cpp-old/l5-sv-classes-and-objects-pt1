@@ -84,7 +84,7 @@ Man kan be kompilatorn skapa en dock
 
 --
 
-### Exempel:
+Exempel:
 
 ```cpp[5]
 includecpp({{SomeClass4.hpp}})
@@ -104,7 +104,7 @@ Man kan också be kompilatorn ta bort en konstruktor
 
 --
 
-### Exempel:
+Exempel:
 
 ```cpp[6,12]
 includecpp({{SomeClass5.hpp}})
@@ -115,4 +115,51 @@ includecpp({{SomeClass5Main.cpp}})
 ```bash[2-3|5-6]
 includecpp({{SomeClass5MainCompOut.txt}})
 ```
+<!-- .element: class="fragment" -->
+
+--
+
+### Varför ska man ha en konstruktor?
+
+För att ***initiera*** variabler
+<!-- .element: class="fragment" -->
+
+Annars får de ***slumpmässiga*** värden
+<!-- .element: class="fragment" -->
+
+--
+
+Exempel:
+
+```cpp[]
+includecpp({{SomeClass4.2.hpp}})
+
+includecpp({{SomeClass4Main2.cpp}})
+```
+<!-- .element: class="r-stretch" -->
+
+--
+
+```bash
+mattias@Osborne1:/mnt/c/temp$ clang++ -std=c++11 test.cpp -o test
+mattias@Osborne1:/mnt/c/temp$ ./test
+pi: -9.92432e+17
+pi: 4.59163e-41
+pi: 0
+```
+
+Om man ***inte initierar*** en variabel kommer den få det ***värde*** som ligger på dess plats i ***minnet*** sen ***tidigare***!
+<!-- .element: class="fragment" -->
+
+--
+
+### Kan vara jättedåligt!
+
+* Best case: Konstiga buggar
+<!-- .element: class="fragment" -->
+* Worst case: Rejäla säkerhetshål
+<!-- .element: class="fragment" -->
+
+Ex:
+https://www.usenix.org/conference/woot20/presentation/cho
 <!-- .element: class="fragment" -->

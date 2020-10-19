@@ -1,8 +1,11 @@
-## struct
+## **`struct`**
 
-Som en klass typ
+--
+
+Som en klass *typ*
 
 Men, allt är **`public`** istället för **`private`** per ***default***
+<!-- .element: class="fragment" -->
 
 --
 

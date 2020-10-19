@@ -1,5 +1,7 @@
 ## Initialiseringslistor
 
+--
+
 Ett annat sätt att initialisera medlemsvariabler
 
 --

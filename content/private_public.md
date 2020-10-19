@@ -1,12 +1,13 @@
 ## Vad är `private` och `public`?
 
+--
+
 `private` - medlemmar nåbara *endast inom* klassen
-<!-- .element: class="fragment" -->
 
 `public` - medlemmar nåbara *utanför* klassen
 <!-- .element: class="fragment" -->
 
-Medlemmar är `private` om inget annat anges
+Medlemmar i en ***klass*** är `private` om inget annat anges
 <!-- .element: class="fragment" -->
 
 --

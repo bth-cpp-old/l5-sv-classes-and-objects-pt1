@@ -38,8 +38,6 @@ include({{konstanter.md}})
 
 ---
 
-FEL NEDAN
-
 include({{delegerande_konstruktorer.md}})
 
 ---

@@ -12,7 +12,7 @@ using cm = int;
 
 --
 
-Används som typ:
+Används som **`typ`**:
 
 ```cpp
 include({{Box1.hpp}})
@@ -48,8 +48,11 @@ int main(){
     b.length = length;
 }
 ```
+<!-- .element: class="r-stretch" -->
 
 --
 
-Alias är ***inte riktiga*** typer, de är ***svaga*** (eng: weak) typer
+Alias är ***inte*** riktiga ***starka typer***, de är ***svaga typer*** typer
 
+(engelska: ***strong*** - ***weak***)
+<!-- .element: class="fragment" -->

@@ -1,8 +1,10 @@
 ## Överlagring
 
+--
+
 Eller: 
 
-***Flera konstruktorer*** som heter ***likadant***?
+***Flera konstruktorer*** som heter ***likadant***
 
 --
 

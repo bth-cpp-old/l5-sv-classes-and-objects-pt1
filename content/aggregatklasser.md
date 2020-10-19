@@ -1,24 +1,24 @@
 ## Aggregatklasser
 
-En klass utan:
-* Konstruktorer (och destruktorer)*
-* Privata icke-statiska medlemmar
-* Utan arv (basklasser och virtuella funktioner)*
+--
 
-Vi kommer gå igenom vad detta är vid en senare föreläsning :-)
+### En klass utan
+1. Konstruktorer (och destruktorer)*
+<!-- .element: class="fragment" -->
+1. Privata icke-statiska medlemmar
+<!-- .element: class="fragment" -->
+1. Arv (basklasser och virtuella funktioner)*
+<!-- .element: class="fragment" -->
+
+*Vi kommer gå igenom vad detta är vid en senare föreläsning 😀
+<!-- .element: class="fragment" -->
 
 --
 
 Fördel? De kan initieras med en ***Initialiseringslista***
 
 --
-
-```cpp
-struct Vec3f { float x, y, z; };
-struct Box { Vec3f min, max; };
-
-int main(){
-	Box myBox = { {1.0f, 2.0f, 3.0f}, {2.0f, 3.0f, 4.0f} };
-}
-
+Ex:
+```cpp[|1|2|5]
+includecpp({{aggregates.cpp}})
 ```

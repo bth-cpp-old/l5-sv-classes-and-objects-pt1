@@ -1,5 +1,7 @@
 ## Konstanter
 
+--
+
 (som ni kanske vet)
 
 **`const`** gör att variabel ***inte*** kan ***ändras*** efter att den ***skapats***

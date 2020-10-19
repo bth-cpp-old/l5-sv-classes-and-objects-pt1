@@ -1,8 +1,7 @@
 Error(s):
-s.cpp:14:13: error: 'calcPiIsh' is a private member of 'SomeClass'
+s.cpp:11:13: error: 'calcPiIsh' is a private member of 'SomeClass'
     myClass.calcPiIsh();
             ^
-s.cpp:7:10: note: implicitly declared private here
-    void calcPiIsh(){
+s.cpp:4:10: note: implicitly declared private here void calcPiIsh(){
          ^
 1 error generated.

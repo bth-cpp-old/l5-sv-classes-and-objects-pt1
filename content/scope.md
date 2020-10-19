@@ -1,5 +1,7 @@
 ## Variablers *scope*
 
+--
+
 <!-- .slide: data-transition="slide-in fade" -->
 
 ```cpp[6]
@@ -13,7 +15,6 @@ Varför heter `p_maxSpeed`, inte `maxSpeed`... ?
 
 ```cpp[4,8]
 includecpp({{Car3Short.hpp}})
-};
 ```
 
 En medlemsvariabel heter redan `maxSpeed`

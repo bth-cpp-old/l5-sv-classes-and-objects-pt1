@@ -2,38 +2,58 @@
 
 --
 
-###  `SomeClass.hpp` och `SomeClass.cpp`
+###  `.hpp` och `.cpp`
 
 Du bör lägga din ***klassdeklaration*** i en `*.hpp`-fil
+<!-- .element: class="fragment" -->
 
-```cpp
+Du bör lägga din ***klassdefinition*** i en `*.cpp`-fil
+<!-- .element: class="fragment" -->
+
+--
+***Klassdeklaration*** i **`Car.hpp`**:
+
+```cpp[|11-13]
 includecpp({{Car11.hpp}})
 ```
 
 --
 
-och din ***klassdefinition*** i en `*.cpp`-fil
+***Klassdefinition*** i **`Car.cpp`**:
 
-```cpp
+```cpp[|3,8,13,18]
 includecpp({{Car11.cpp}})
 ```
 <!-- .element: class="r-stretch" -->
 
 --
 
-## Ska man ha `public` eller `private` först?
+### Ska man ha `public` eller `private` först?
 
-```cpp
-includecpp({{Car11.2.hpp}})
-```
+Spelar ingen roll!
 <!-- .element: class="fragment" -->
 
 --
 
-Spelar ingen roll!
+Ex:
+```cpp
+includecpp({{Car11.2.hpp}})
+```
 
-Välj en stil och följ den konsekvent!
+--
+Fördelar?
+
+Lättare att förstå ditt API för andra
 <!-- .element: class="fragment" -->
+
+Nackdelar?
+
+Medlemsfunktioner hamnar före sina variabler
+<!-- .element: class="fragment" -->
+
+--
+
+Välj en stil och följ den ***konsekvent***!
 
 --
 

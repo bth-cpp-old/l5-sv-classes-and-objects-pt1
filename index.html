@@ -36,8 +36,9 @@ hjh
 
 ## Vad är en klass ?
 
+--
+
 En gruppering av funktioner och variabler
-<!-- .element: class="fragment" -->
 
 En mall som man skapar objekt från
 <!-- .element: class="fragment" -->
@@ -59,9 +60,38 @@ Med klasser kan man dela upp koden modulärt
 <!-- .element: class="fragment" -->
 
 --
-<!-- .slide: data-transition="slide-in fade-out" -->
+<!-- .slide: data-transition="fade" -->
+***Klasser*** har ***namn***
 
-```cpp[1|2|4-6]
+```cpp[1]
+class SomeClass {
+	float piIsh;
+
+	void calcPiIsh(){
+		...
+	}
+};
+```
+
+--
+<!-- .slide: data-transition="fade" -->
+***Medlemsvariabler***
+
+```cpp[2]
+class SomeClass {
+	float piIsh;
+
+	void calcPiIsh(){
+		...
+	}
+};
+```
+
+--
+<!-- .slide: data-transition="fade" -->
+***Medlemsfunktioner***
+
+```cpp[4-6]
 class SomeClass {
 	float piIsh;
 
@@ -74,7 +104,7 @@ class SomeClass {
 --
 
 <!-- .slide: data-transition="fade slide-out" -->
-Funktioner i ett objekt kan nå variablerna i detsamma
+***Funktioner*** i ett objekt kan ***nå variabler*** i ***densamma***
 
 ```cpp[4-6]
 class SomeClass {
@@ -85,9 +115,9 @@ class SomeClass {
 	}
 };
 ```
-<!-- .element: class="fragment" -->
 
 --
+<!-- .slide: data-transition="slide-in fade-out" -->
 
 Hur skapar man objekt från klasser?
 
@@ -106,7 +136,7 @@ int main() {
 ```
 <!-- .element: class="fragment" -->
 
-```bash[|1|2-3]
+```bash[1|2-3]
 Warning(s):
 s.cpp:11:15: warning: unused variable 'myClass' [-Wunused-variable]
     SomeClass myClass;
@@ -116,6 +146,9 @@ s.cpp:11:15: warning: unused variable 'myClass' [-Wunused-variable]
 <!-- .element: class="fragment" -->
 
 --
+<!-- .slide: data-transition="fade" -->
+
+Hur använder man dem?
 
 ```cpp[11]
 class SomeClass {
@@ -133,13 +166,12 @@ int main() {
 
 ```
 
-```bash[|1|2-3|5-6]
+```bash[1|2-3|5]
 Error(s):
-s.cpp:14:13: error: 'calcPiIsh' is a private member of 'SomeClass'
+s.cpp:11:13: error: 'calcPiIsh' is a private member of 'SomeClass'
     myClass.calcPiIsh();
             ^
-s.cpp:7:10: note: implicitly declared private here
-    void calcPiIsh(){
+s.cpp:4:10: note: implicitly declared private here void calcPiIsh(){
          ^
 1 error generated.
 ```
@@ -147,7 +179,9 @@ s.cpp:7:10: note: implicitly declared private here
 
 --
 <!-- .slide: data-transition="fade" -->
-	
+
+Och hur fixar man det där kompileringsfelet?
+
 ```cpp[2,5]
 class SomeClass {
  private:
@@ -174,13 +208,14 @@ Compilation time: 0.25 sec
 
 ## Vad är `private` och `public`?
 
+--
+
 `private` - medlemmar nåbara *endast inom* klassen
-<!-- .element: class="fragment" -->
 
 `public` - medlemmar nåbara *utanför* klassen
 <!-- .element: class="fragment" -->
 
-Medlemmar är `private` om inget annat anges
+Medlemmar i en ***klass*** är `private` om inget annat anges
 <!-- .element: class="fragment" -->
 
 --
@@ -266,6 +301,8 @@ int main() {
 ---
 
 ## `static` 
+
+--
 
 Hittills har alla funktioner och variabler varit ***medlemmar*** i klassen
 --
@@ -493,17 +530,16 @@ Man kan be kompilatorn skapa en dock
 
 --
 
-### Exempel:
+Exempel:
 
 ```cpp[5]
 class SomeClass {
-  private:
-	float piIsh;
-  public:
-	SomeClass() = default;
-		SomeClass(float customPi){
-        piIsh = customPi;
-    }
+ private:
+  float piIsh;
+
+ public:
+  SomeClass() = default;
+  SomeClass(float customPi) { piIsh = customPi; }
 };
 
 int main(){
@@ -524,7 +560,7 @@ Man kan också be kompilatorn ta bort en konstruktor
 
 --
 
-### Exempel:
+Exempel:
 
 ```cpp[6,12]
 class SomeClass {
@@ -554,14 +590,78 @@ s.cpp:5:2: note: 'SomeClass' has been explicitly marked deleted here
 ```
 <!-- .element: class="fragment" -->
 
+--
+
+### Varför ska man ha en konstruktor?
+
+För att ***initiera*** variabler
+<!-- .element: class="fragment" -->
+
+Annars får de ***slumpmässiga*** värden
+<!-- .element: class="fragment" -->
+
+--
+
+Exempel:
+
+```cpp[]
+#include &lt;iostream&gt;
+
+class SomeClass {
+ private:
+  float piIsh;
+
+ public:
+  SomeClass() = default;
+  SomeClass(float customPi) { piIsh = customPi; }
+  void print() { std::cout &lt;&lt; "pi: " &lt;&lt; piIsh &lt;&lt; "\n"; }
+};
+
+int main(){
+    SomeClass myPis[3];
+    for( SomeClass pi : myPis){
+        pi.print();
+    }
+}
+```
+<!-- .element: class="r-stretch" -->
+
+--
+
+```bash
+mattias@Osborne1:/mnt/c/temp$ clang++ -std=c++11 test.cpp -o test
+mattias@Osborne1:/mnt/c/temp$ ./test
+pi: -9.92432e+17
+pi: 4.59163e-41
+pi: 0
+```
+
+Om man ***inte initierar*** en variabel kommer den få det ***värde*** som ligger på dess plats i ***minnet*** sen ***tidigare***!
+<!-- .element: class="fragment" -->
+
+--
+
+### Kan vara jättedåligt!
+
+* Best case: Konstiga buggar
+<!-- .element: class="fragment" -->
+* Worst case: Rejäla säkerhetshål
+<!-- .element: class="fragment" -->
+
+Ex:
+https://www.usenix.org/conference/woot20/presentation/cho
+<!-- .element: class="fragment" -->
+
 
 ---
 
 ## Överlagring
 
+--
+
 Eller: 
 
-***Flera konstruktorer*** som heter ***likadant***?
+***Flera konstruktorer*** som heter ***likadant***
 
 --
 
@@ -574,8 +674,8 @@ int f(){ return 42; }
 int f(int i){ return i; }
 
 int main(){
-    std::cout&lt;&lt;f()&lt;&lt;std::endl;
-    std::cout&lt;&lt;f(7)&lt;&lt;std::endl;
+    std::cout&lt;&lt;f()&lt;&lt;"\n";
+    std::cout&lt;&lt;f(7)&lt;&lt;"\n";
 }
 ```
 
@@ -607,18 +707,21 @@ Då vet kompilatorn vilken ***version*** av funktionen du anropar
 
 ## Variablers *scope*
 
+--
+
 <!-- .slide: data-transition="slide-in fade" -->
 
 ```cpp[6]
 class Car {
-	private:
-	float speed;
-	float maxSpeed;
-  	...
-	Car(float p_maxSpeed){
-		speed = 0.0f;
-		maxSpeed = p_maxSpeed;
-	...
+ private:
+  float speed;
+  float maxSpeed;
+  ...
+  Car(float p_maxSpeed) {
+    speed = 0.0f;
+    maxSpeed = p_maxSpeed;
+  }
+  ...
 };
 ```
 
@@ -629,15 +732,15 @@ Varför heter `p_maxSpeed`, inte `maxSpeed`... ?
 
 ```cpp[4,8]
 class Car {
-	private:
-	float speed;
-	float maxSpeed;
-  	...
-	Car(float p_maxSpeed){
-		speed = 0.0f;
-		maxSpeed = p_maxSpeed;
-	...
-};
+ private:
+  float speed;
+  float maxSpeed;
+  ...
+  Car(float p_maxSpeed) {
+    speed = 0.0f;
+    maxSpeed = p_maxSpeed;
+  }
+  ...
 };
 ```
 
@@ -648,14 +751,15 @@ En medlemsvariabel heter redan `maxSpeed`
 
 ```cpp[4,6,8]
 class Car {
-	private:
-	float speed;
-	float maxSpeed;
-  	...
-	Car(float p_maxSpeed){
-		speed = 0.0f;
-		maxSpeed = p_maxSpeed;
-	...
+ private:
+  float speed;
+  float maxSpeed;
+  ...
+  Car(float p_maxSpeed) {
+    speed = 0.0f;
+    maxSpeed = p_maxSpeed;
+  }
+  ...
 };
 ```
 Om medlemsvariabeln inte ska ***gå ur scope*** måste parametern heta något annat
@@ -671,6 +775,8 @@ Eller...
 ---
 
 ## `this`
+
+--
 
 Ett ***nyckelord*** (***keyword***) som fungerar som en ***pekare*** till det ***aktuella objektet***
 
@@ -691,7 +797,6 @@ class SomeClass {
 	void calcPiIsh(){
 		piIsh = 22.0f / 7.0f;
 	}
-};
 };
 ```
 
@@ -753,26 +858,28 @@ De betyder ***samma sak***, men
 
 `this` kan också användas när en ***parameter*** har ***samma namn*** som en ***medlemsvariabel***
 
-Som i fallet med klassen `Car`. Låt oss ta en ny titt!
-<!-- .element: class="fragment" -->
-
 --
+<!-- .slide: data-transition="slide-in fade-out" -->
+Som i fallet med klassen `Car`
 
-```cpp[6-8]
+```cpp[6,8]
 class Car {
-	private:
-	float speed;
-	float maxSpeed;
-  	...
-	Car(float p_maxSpeed){
-		speed = 0.0f;
-		maxSpeed = p_maxSpeed;
-	...
+ private:
+  float speed;
+  float maxSpeed;
+  ...
+  Car(float p_maxSpeed) {
+    speed = 0.0f;
+    maxSpeed = p_maxSpeed;
+  }
+  ...
 };
 ```
 
-blir
-<!-- .element: class="fragment" -->
+--
+<!-- .slide: data-transition="fade" -->
+
+som blir
 
 ```cpp[6-8]
 class Car {
@@ -780,21 +887,20 @@ class Car {
   float speed;
   float maxSpeed;
   ...
-
- public:
   Car(float maxSpeed) {
     speed = 0.0f;
     this-&gt;maxSpeed = maxSpeed;
   }
   ...
-  };
+};
 ```
-<!-- .element: class="fragment" -->
 
 
 ---
 
 ## Initialiseringslistor
+
+--
 
 Ett annat sätt att initialisera medlemsvariabler
 
@@ -806,14 +912,12 @@ class Car {
   float speed;
   float maxSpeed;
   ...
-
- public:
   Car(float maxSpeed) {
     speed = 0.0f;
     this-&gt;maxSpeed = maxSpeed;
   }
   ...
-  };
+};
 
 ```
 
@@ -859,6 +963,8 @@ Det händer att man glömmer `this`  exempelvis
 
 ## Konstanter
 
+--
+
 (som ni kanske vet)
 
 **`const`** gör att variabel ***inte*** kan ***ändras*** efter att den ***skapats***
@@ -881,14 +987,12 @@ class Car {
   float speed;
   float maxSpeed;
   ...
-
- public:
   Car(float maxSpeed) {
     speed = 0.0f;
     this-&gt;maxSpeed = maxSpeed;
   }
   ...
-  };
+};
 ```
 
 --
@@ -997,15 +1101,22 @@ class Car {
 
 ---
 
-FEL NEDAN
-
 ## Delegerande Konstruktorer
-
-Ibland behöver man ***återanvända*** logik från en konstruktor i en ***annan***
 
 --
 
-```cpp
+Ibland behöver man ***återanvända*** logik från en konstruktor i en ***annan***
+
+Med ***delegerande*** konstruktorer ***anropar*** man ***en annan*** konstruktor
+<!-- .element: class="fragment" -->
+
+Ungefär som i en initialiseringslista
+<!-- .element: class="fragment" -->
+--
+
+Ex:
+
+```cpp[10-11, 15-16]
 class Car {
   private:
     std::string makeAndModel
@@ -1029,7 +1140,9 @@ class Car {
 
 --
 
-```cpp
+Blir:
+
+```cpp[10-11 | 13]
 class Car {
   private:
     std::string makeAndModel
@@ -1060,11 +1173,14 @@ Kan ***inte*** kombineras med ***initialiseringslistor***
 
 ---
 
-## struct
+## **`struct`**
 
-Som en klass typ
+--
+
+Som en klass *typ*
 
 Men, allt är **`public`** istället för **`private`** per ***default***
+<!-- .element: class="fragment" -->
 
 --
 
@@ -1103,25 +1219,31 @@ Exempelvis för ***aggregatklasser***
 
 ## Aggregatklasser
 
-En klass utan:
-* Konstruktorer (och destruktorer)*
-* Privata icke-statiska medlemmar
-* Utan arv (basklasser och virtuella funktioner)*
+--
 
-Vi kommer gå igenom vad detta är vid en senare föreläsning :-)
+### En klass utan
+1. Konstruktorer (och destruktorer)*
+<!-- .element: class="fragment" -->
+1. Privata icke-statiska medlemmar
+<!-- .element: class="fragment" -->
+1. Arv (basklasser och virtuella funktioner)*
+<!-- .element: class="fragment" -->
+
+*Vi kommer gå igenom vad detta är vid en senare föreläsning 😀
+<!-- .element: class="fragment" -->
 
 --
 
 Fördel? De kan initieras med en ***Initialiseringslista***
 
 --
-
-```cpp
-struct Vec3f { float x, y, z; };
-struct Box { Vec3f min, max; };
+Ex:
+```cpp[|1|2|5]
+struct Vec3f { float x&#44; y&#44; z; };
+struct Box { Vec3f min&#44; max; };
 
 int main(){
-	Box myBox = { {1.0f, 2.0f, 3.0f}, {2.0f, 3.0f, 4.0f} };
+	Box myBox = { {1.0f&#44; 2.0f&#44; 3.0f}&#44; {2.0f&#44; 3.0f&#44; 4.0f} };
 }
 
 ```
@@ -1142,9 +1264,11 @@ using cm = int;
 
 --
 
-Används som typ:
+Används som **`typ`**:
 
 ```cpp
+using cm = int;
+
 struct Box {
     cm length;
     cm height;
@@ -1179,6 +1303,8 @@ int main(){
 using cm = int;
 using inch = int;
 
+using cm = int;
+
 struct Box {
     cm length;
     cm height;
@@ -1191,11 +1317,14 @@ int main(){
     b.length = length;
 }
 ```
+<!-- .element: class="r-stretch" -->
 
 --
 
-Alias är ***inte riktiga*** typer, de är ***svaga*** (eng: weak) typer
+Alias är ***inte*** riktiga ***starka typer***, de är ***svaga typer*** typer
 
+(engelska: ***strong*** - ***weak***)
+<!-- .element: class="fragment" -->
 
 
 ---
@@ -1242,11 +1371,18 @@ I verkligheten kommer din ***kompilator*** själv ***avgöra*** vad som inlineas
 
 --
 
-###  `SomeClass.hpp` och `SomeClass.cpp`
+###  `.hpp` och `.cpp`
 
 Du bör lägga din ***klassdeklaration*** i en `*.hpp`-fil
+<!-- .element: class="fragment" -->
 
-```cpp
+Du bör lägga din ***klassdefinition*** i en `*.cpp`-fil
+<!-- .element: class="fragment" -->
+
+--
+***Klassdeklaration*** i **`Car.hpp`**:
+
+```cpp[|11-13]
 class Car {
  private:
   float speed;
@@ -1265,9 +1401,9 @@ class Car {
 
 --
 
-och din ***klassdefinition*** i en `*.cpp`-fil
+***Klassdefinition*** i **`Car.cpp`**:
 
-```cpp
+```cpp[|3,8,13,18]
 #include &lt;Car.hpp&gt;
 
 void Car::sanityCheckSpeed() {
@@ -1279,18 +1415,26 @@ void Car::accelerate(float pedalFactor) {
   speed += 10 * pedalFactor;
   sanityCheckSpeed();
 }
+
 void Car::applyBreak(float pedalFactor) {
   speed -= 10 * pedalFactor;
   sanityCheckSpeed();
 }
+
 float Car::getSpeed() const { return speed; }
 ```
 <!-- .element: class="r-stretch" -->
 
 --
 
-## Ska man ha `public` eller `private` först?
+### Ska man ha `public` eller `private` först?
 
+Spelar ingen roll!
+<!-- .element: class="fragment" -->
+
+--
+
+Ex:
 ```cpp
 class Car {
  public:
@@ -1307,14 +1451,21 @@ class Car {
   void sanityCheckSpeed();
 };
 ```
+
+--
+Fördelar?
+
+Lättare att förstå ditt API för andra
+<!-- .element: class="fragment" -->
+
+Nackdelar?
+
+Medlemsfunktioner hamnar före sina variabler
 <!-- .element: class="fragment" -->
 
 --
 
-Spelar ingen roll!
-
-Välj en stil och följ den konsekvent!
-<!-- .element: class="fragment" -->
+Välj en stil och följ den ***konsekvent***!
 
 --
 

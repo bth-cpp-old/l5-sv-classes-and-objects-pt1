@@ -1,5 +1,7 @@
 ## `static` 
 
+--
+
 Hittills har alla funktioner och variabler varit ***medlemmar*** i klassen
 --
 

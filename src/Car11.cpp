@@ -9,8 +9,10 @@ void Car::accelerate(float pedalFactor) {
   speed += 10 * pedalFactor;
   sanityCheckSpeed();
 }
+
 void Car::applyBreak(float pedalFactor) {
   speed -= 10 * pedalFactor;
   sanityCheckSpeed();
 }
+
 float Car::getSpeed() const { return speed; }

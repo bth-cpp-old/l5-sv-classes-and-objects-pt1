@@ -1,5 +1,7 @@
 ## `this`
 
+--
+
 Ett ***nyckelord*** (***keyword***) som fungerar som en ***pekare*** till det ***aktuella objektet***
 
 --
@@ -14,7 +16,6 @@ D.v.s., kompilatorn har lagt till `this` åt dig
 
 ```cpp[5]
 includecpp({{SomeClass2.hpp}})
-};
 ```
 
 är alltså egentligen
@@ -57,19 +58,19 @@ De betyder ***samma sak***, men
 
 `this` kan också användas när en ***parameter*** har ***samma namn*** som en ***medlemsvariabel***
 
-Som i fallet med klassen `Car`. Låt oss ta en ny titt!
-<!-- .element: class="fragment" -->
-
 --
+<!-- .slide: data-transition="slide-in fade-out" -->
+Som i fallet med klassen `Car`
 
-```cpp[6-8]
+```cpp[6,8]
 includecpp({{Car3Short.hpp}})
 ```
 
-blir
-<!-- .element: class="fragment" -->
+--
+<!-- .slide: data-transition="fade" -->
+
+som blir
 
 ```cpp[6-8]
 includecpp({{Car4Short.hpp}})
 ```
-<!-- .element: class="fragment" -->
