@@ -69,6 +69,9 @@ Compilation time: 0.23 sec
 ```
 <!-- .element: class="fragment" -->
 
+Note:
+Vi skapar en till ctor
+en default-ctor
 --
 
 ### Varför fungerade det innan?
@@ -86,7 +89,7 @@ Man kan be kompilatorn skapa en dock
 
 Exempel:
 
-```cpp[5]
+```cpp[6]
 includecpp({{SomeClass4.hpp}})
 
 includecpp({{SomeClass4Main.cpp}})
@@ -106,7 +109,7 @@ Man kan också be kompilatorn ta bort en konstruktor
 
 Exempel:
 
-```cpp[6,12]
+```cpp[6 | 12]
 includecpp({{SomeClass5.hpp}})
 
 includecpp({{SomeClass5Main.cpp}})
@@ -117,6 +120,9 @@ includecpp({{SomeClass5MainCompOut.txt}})
 ```
 <!-- .element: class="fragment" -->
 
+Note:
+Vad är det bra för?
+Man kan kräva en viss datatyp, ex ett flyttal
 --
 
 ### Varför ska man ha en konstruktor?

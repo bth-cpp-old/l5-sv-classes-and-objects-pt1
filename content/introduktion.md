@@ -1,10 +1,8 @@
 # Introduktion till klasser och objekt
 
 Note:
-This will only display in the notes window.
-yhjj
-hjhkhk
+Dagens ämne är klasser och objekt!
 
-hjh
-* a
-* b
+Vad är det då?
+
+Vi kör igång

@@ -15,10 +15,10 @@
 
 --
 
-Fördel? De kan initieras med en ***Initialiseringslista***
+Fördel? De kan initieras med en ***initialiseringslista***
 
 --
-Ex:
-```cpp[|1|2|5]
+### Ett exempel:
+```cpp[1|5|2|6]
 includecpp({{aggregates.cpp}})
 ```

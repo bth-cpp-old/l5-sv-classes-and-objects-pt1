@@ -25,24 +25,32 @@ Ger möjlighet till *Abstraktion* och *Inkapsling*
 ### Abstraktion
 
 *Användaren behöver inte veta vad som händer under huven*
+<!-- .element: class="fragment" -->
 
-* Vet du hur en bils förbränningsmotor fungerar?
-* Behöver du veta det? 
-* Räcker det med att veta vad som händer när du trycker på gaspedalen?
+* Vet du hur en bils förbränningsmotor fungerar? <!-- .element: class="fragment" -->
+* Behöver du veta det? <!-- .element: class="fragment" -->
+* Räcker det med att veta vad som händer när du trycker på gaspedalen?<!-- .element: class="fragment" -->
+
 
 --
 
 ### Inkapsling (Encapsulation)
 
 *Saker som hänger ihop ska samlas*
+<!-- .element: class="fragment" -->
 
+Note:
+Här skulle exemplet kunna vara:
+Bil som klass
+Bra att ha hjkul, dörrar, gaspedaler etc i samma klass,
+samlat 
 --
 
 ### Ett exempel
 
 --
 
-```cpp[|3-4|6-9|11-22]
+```cpp[|2-9|10-22|3-4|6-9|11-22]
 includecpp({{Car1.hpp}})
 ```
 <!-- .element: class="r-stretch" -->
@@ -51,7 +59,7 @@ includecpp({{Car1.hpp}})
 
 ### Nu provkör vi!
 
-```cpp[7-8| 10-12 | 13-14]
+```cpp[6 | 7| 9-11 | 12-13]
 includecpp({{CarShort.hpp}})
 
 includecpp({{Car1Main.cpp}})

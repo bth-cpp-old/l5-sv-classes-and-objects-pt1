@@ -21,7 +21,15 @@ includecpp({{SomeStruct.hpp}})
 
 --
 
-Använd **`struct`** istället för `class` när du vill ***gruppera data*** utan allt för mycket ***funktionalitet***. 
+### När ska man använda sig av `struct` ?
+
+När du vill ***gruppera data*** utan allt för mycket ***funktionalitet***. 
+<!-- .element: class="fragment" -->
+
+Note:
+Man tappar säkerhet med get-funktioner som har const ex dock
+
+Större risk att man av misstag ändrar ett värde
 
 --
 

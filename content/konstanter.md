@@ -70,3 +70,11 @@ En ***medlemsfunktion*** som är **`const`** kan ***inte*** modifiera ***medlems
 includecpp({{Car10Short.hpp}})
 ```
 <!-- .element: class="fragment" -->
+
+--
+
+### Vad är `const` bra för?
+
+* Färre buggar <!-- .element: class="fragment" -->
+* Visar om du har sidoeffekter <!-- .element: class="fragment" -->
+* Hjälper kompilatorn att optimera <!-- .element: class="fragment" -->

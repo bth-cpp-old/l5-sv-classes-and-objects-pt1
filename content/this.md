@@ -74,3 +74,8 @@ som blir
 ```cpp[6-8]
 includecpp({{Car4Short.hpp}})
 ```
+
+Note:
+Här berättar vi för kompilatorn att:
+- just instansens variabel av namnet
+- som ska tilldelas värdet från parametern

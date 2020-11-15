@@ -24,13 +24,11 @@
 						# Introduktion till klasser och objekt
 
 Note:
-This will only display in the notes window.
-yhjj
-hjhkhk
+Dagens ämne är klasser och objekt!
 
-hjh
-* a
-* b
+Vad är det då?
+
+Vi kör igång
 
 ---
 
@@ -46,6 +44,13 @@ En mall som man skapar objekt från
 ![OO](images/class-object-featured-image.png "OO")
 <!-- .element: class="fragment" -->
 
+Note:
+Man kan se det på flera sätt
+
+I grund och botten: en gruppering
+
+men kan dock se det som en mall
+
 --
 
 ### Varför klasser?
@@ -59,8 +64,14 @@ Det kan bli grötigt i stora projekt
 Med klasser kan man dela upp koden modulärt
 <!-- .element: class="fragment" -->
 
+Man kan tänka sig koden som en uppsättning "grejer"
+<!-- .element: class="fragment" -->
+
 --
 <!-- .slide: data-transition="fade" -->
+
+### Klassens anatomi
+
 ***Klasser*** har ***namn***
 
 ```cpp[1]
@@ -75,6 +86,9 @@ class SomeClass {
 
 --
 <!-- .slide: data-transition="fade" -->
+
+### Klassens anatomi
+
 ***Medlemsvariabler***
 
 ```cpp[2]
@@ -86,9 +100,14 @@ class SomeClass {
 	}
 };
 ```
+Note:
+Dags för ett exempel!
 
 --
 <!-- .slide: data-transition="fade" -->
+
+### Klassens anatomi
+
 ***Medlemsfunktioner***
 
 ```cpp[4-6]
@@ -100,11 +119,15 @@ class SomeClass {
 	}
 };
 ```
+Note:
+Medlemsfunktioner kan också kallas metoder. Jag har (o)vanan att använda det ordet.
 
 --
-
 <!-- .slide: data-transition="fade slide-out" -->
-***Funktioner*** i ett objekt kan ***nå variabler*** i ***densamma***
+
+### Klassens anatomi
+
+***Funktioner*** i ett objekt kan ***nå variabler*** i ***objektet***
 
 ```cpp[4-6]
 class SomeClass {
@@ -115,7 +138,8 @@ class SomeClass {
 	}
 };
 ```
-
+Note:
+Vad är då Objekt
 --
 <!-- .slide: data-transition="slide-in fade-out" -->
 
@@ -136,7 +160,7 @@ int main() {
 ```
 <!-- .element: class="fragment" -->
 
-```bash[1|2-3]
+```bash[2-3]
 Warning(s):
 s.cpp:11:15: warning: unused variable 'myClass' [-Wunused-variable]
     SomeClass myClass;
@@ -145,10 +169,13 @@ s.cpp:11:15: warning: unused variable 'myClass' [-Wunused-variable]
 ```
 <!-- .element: class="fragment" -->
 
+Note:
+Objekt är , som vi sa tidigare, en instans av en klass
+
 --
 <!-- .slide: data-transition="fade" -->
 
-Hur använder man dem?
+Hur använder man objekt?
 
 ```cpp[11]
 class SomeClass {
@@ -166,7 +193,7 @@ int main() {
 
 ```
 
-```bash[1|2-3|5]
+```bash[2-3|5]
 Error(s):
 s.cpp:11:13: error: 'calcPiIsh' is a private member of 'SomeClass'
     myClass.calcPiIsh();
@@ -198,6 +225,7 @@ int main() {
 
 
 ```
+<!-- .element: class="fragment" -->
 
 ```bash
 Compilation time: 0.25 sec
@@ -233,24 +261,32 @@ Ger möjlighet till *Abstraktion* och *Inkapsling*
 ### Abstraktion
 
 *Användaren behöver inte veta vad som händer under huven*
+<!-- .element: class="fragment" -->
 
-* Vet du hur en bils förbränningsmotor fungerar?
-* Behöver du veta det? 
-* Räcker det med att veta vad som händer när du trycker på gaspedalen?
+* Vet du hur en bils förbränningsmotor fungerar? <!-- .element: class="fragment" -->
+* Behöver du veta det? <!-- .element: class="fragment" -->
+* Räcker det med att veta vad som händer när du trycker på gaspedalen?<!-- .element: class="fragment" -->
+
 
 --
 
 ### Inkapsling (Encapsulation)
 
 *Saker som hänger ihop ska samlas*
+<!-- .element: class="fragment" -->
 
+Note:
+Här skulle exemplet kunna vara:
+Bil som klass
+Bra att ha hjkul, dörrar, gaspedaler etc i samma klass,
+samlat 
 --
 
 ### Ett exempel
 
 --
 
-```cpp[|3-4|6-9|11-22]
+```cpp[|2-9|10-22|3-4|6-9|11-22]
 class Car {
   private:
 	float speed;
@@ -281,7 +317,7 @@ class Car {
 
 ### Nu provkör vi!
 
-```cpp[7-8| 10-12 | 13-14]
+```cpp[6 | 7| 9-11 | 12-13]
 class Car {
   ...
 };
@@ -296,63 +332,6 @@ int main() {
     minVolvo242Gl.applyBreak(42.0f); // Rådjur!!!
     minVolvo242Gl.applyBreak(1.0f); // Puh!!! Vi överlevde!
 }
-```
-
----
-
-## `static` 
-
---
-
-Hittills har alla funktioner och variabler varit ***medlemmar*** i klassen
---
-
-De har varit ***knutna*** till en specifik ***instans*** 
-
---
-
-Ex:
-
-```cpp
-Car volvo;
-volvoPv.setup(100);
-
-Car saab;
-saab900Turbo.setup(200);
-
-Car koeniggseggJeskoAbsolut;
-koeniggseggJeskoAbsolut.setup(483);
-```
-
---
-
-Med **`static`** kan man skapa ***funktioner*** och ***variabler*** som ***delas*** av alla instanser av en ***klass***
-
---
-
-```cpp
-#include &lt;iostream&gt;
-
-class MphConverter {
-  private:
-	static float mphToKmhFactor;
-
-  public:
-	static float toKmh(float mph){
-		return mph*mphToKmhFactor;
-	}
-};
-
-float MphConverter::mphToKmhFactor = 1.60934;
-
-int main(){
-	std::cout&lt;&lt;"60 mph is "&lt;&lt;MphConverter::toKmh(60)&lt;&lt;" Kmh";
-}
-```
-<!-- .element: class="r-stretch" -->
-
-```
-60 mph is 96.5604 Kmh
 ```
 
 ---
@@ -515,6 +494,9 @@ Compilation time: 0.23 sec
 ```
 <!-- .element: class="fragment" -->
 
+Note:
+Vi skapar en till ctor
+en default-ctor
 --
 
 ### Varför fungerade det innan?
@@ -532,7 +514,7 @@ Man kan be kompilatorn skapa en dock
 
 Exempel:
 
-```cpp[5]
+```cpp[6]
 class SomeClass {
  private:
   float piIsh;
@@ -562,7 +544,7 @@ Man kan också be kompilatorn ta bort en konstruktor
 
 Exempel:
 
-```cpp[6,12]
+```cpp[6 | 12]
 class SomeClass {
  private:
   float piIsh;
@@ -590,6 +572,9 @@ s.cpp:5:2: note: 'SomeClass' has been explicitly marked deleted here
 ```
 <!-- .element: class="fragment" -->
 
+Note:
+Vad är det bra för?
+Man kan kräva en viss datatyp, ex ett flyttal
 --
 
 ### Varför ska man ha en konstruktor?
@@ -661,7 +646,7 @@ https://www.usenix.org/conference/woot20/presentation/cho
 
 Eller: 
 
-***Flera konstruktorer*** som heter ***likadant***
+***Flera medlemsfunktioner*** som heter ***likadant***
 
 --
 
@@ -693,14 +678,24 @@ Compilation time: 0.52 sec&#44; absolute running time: 0.16 sec
 
 I ***kompileringen*** kommer namn att ***manglas***
 
-* `int f()` blir `_Z1fv`
-* `int f(int i)` blir  `_Z1fi`
+* `int f()` blir `_Z1fv` <!-- .element: class="fragment" -->
+* `int f(int i)` blir  `_Z1fi` <!-- .element: class="fragment" -->
 
+Note:
+fv, funktionens namn och void
+- void som i tomhet
+- void, precis som returvärdet
+
+fi, funktionens namn och int
+
+Notera att returvärdet ej finns med i manglingen
+
+Exemplet ovan är från Linux/GCC
 --
 
-### Varför
+### Varför mangling
 
-Då vet kompilatorn vilken ***version*** av funktionen du anropar
+Då vet länkaren vilken ***version*** av funktionen du anropar
 
 
 ---
@@ -895,6 +890,10 @@ class Car {
 };
 ```
 
+Note:
+Här berättar vi för kompilatorn att:
+- just instansens variabel av namnet
+- som ska tilldelas värdet från parametern
 
 ---
 
@@ -1099,6 +1098,80 @@ class Car {
 ```
 <!-- .element: class="fragment" -->
 
+--
+
+### Vad är `const` bra för?
+
+* Färre buggar <!-- .element: class="fragment" -->
+* Visar om du har sidoeffekter <!-- .element: class="fragment" -->
+* Hjälper kompilatorn att optimera <!-- .element: class="fragment" -->
+
+---
+
+## `static` 
+
+--
+
+Hittills har alla funktioner och variabler varit ***medlemmar*** i klassen
+--
+
+De har varit ***knutna*** till en specifik ***instans*** 
+
+--
+
+Ex:
+
+```cpp
+class Car{...};
+
+Car volvoPv(100);
+
+Car saab900Turbo(200);
+
+Car koeniggseggJeskoAbsolut(483);
+```
+
+--
+
+Med **`static`** kan man skapa ***funktioner*** och ***variabler*** som ***delas*** av alla instanser av en ***klass***
+
+--
+
+### Ett exempel
+
+```[5|8-10|13|16]cpp
+#include &lt;iostream&gt;
+
+class MphConverter {
+  private:
+	static const float mphToKmhFactor;
+
+  public:
+	static float toKmh(float mph){
+		return mph*mphToKmhFactor;
+	}
+};
+
+const float MphConverter::mphToKmhFactor = 1.60934;
+
+int main(){
+	std::cout&lt;&lt;"60 mph is "&lt;&lt;MphConverter::toKmh(60)&lt;&lt;" Kmh";
+}
+```
+<!-- .element: class="r-stretch" -->
+
+```
+60 mph is 96.5604 Kmh
+```
+<!-- .element: class="fragment" -->
+
+Note:
+- Först skapar vi en variabel som delas av alla instanser av klassen (objekt)
+- Den är dessutom const
+
+- Sen har vi en statisk medlemsfunktion som delas av alla instanser (objekt)
+- Den använder variabeln ovan
+
 ---
 
 ## Delegerande Konstruktorer
@@ -1114,9 +1187,9 @@ Ungefär som i en initialiseringslista
 <!-- .element: class="fragment" -->
 --
 
-Ex:
+### Exempelvis:
 
-```cpp[10-11, 15-16]
+```cpp[8,9,13-14|10-11, 15-16]
 class Car {
   private:
     std::string makeAndModel
@@ -1138,11 +1211,18 @@ class Car {
 ```
 <!-- .element: class="r-stretch" -->
 
+Note:
+I det här exemplet har vi tre konstruktorer.
+
+Kod för att se till att maxSpeed är rimlig är duplicerad i två av konstruktorerna.
+
+I övrigt används initialiseringslistor för övriga medlemsvariabler.
+
 --
 
 Blir:
 
-```cpp[10-11 | 13]
+```cpp[ 8 | 9 | 10-11 | 13 | 14]
 class Car {
   private:
     std::string makeAndModel
@@ -1150,7 +1230,7 @@ class Car {
 	  float speed;
 	  ...
   public:
-	  Car() : speed(0.0f)&#44; maxSpeed(100){}
+	Car() : speed(0.0f)&#44; maxSpeed(100){}
     Car(float maxSpeed) : Car() {
         if (maxSpeed &gt; 240) maxSpeed = 240;
         if (maxSpeed &lt; 0) maxSpeed = 100;
@@ -1162,13 +1242,27 @@ class Car {
 ```
 <!-- .element: class="r-stretch" -->
 
+Note:
+- Första konstruktorn ser identisk ut
+
+- Andra konstruktorn har kvar koden som var duplicerad
+- Använder sig av första konstruktorn för att sätta speed till ett defaultvärde
+
+- Tredje konstruktorn anropar konstruktor nr2
+    - slippa duplicera kod
+    - Sätter makeAndModel manuellt
+
+Man kan inte blanda initialiseringslistor och delegerande konstruktorer.
+
 --
 
 ### Pros & Cons
 
 Logik kan ***återanvändas***
+<!-- .element: class="fragment" -->
 
 Kan ***inte*** kombineras med ***initialiseringslistor***
+<!-- .element: class="fragment" -->
 
 
 ---
@@ -1208,7 +1302,15 @@ struct SomeStruct {
 
 --
 
-Använd **`struct`** istället för `class` när du vill ***gruppera data*** utan allt för mycket ***funktionalitet***. 
+### När ska man använda sig av `struct` ?
+
+När du vill ***gruppera data*** utan allt för mycket ***funktionalitet***. 
+<!-- .element: class="fragment" -->
+
+Note:
+Man tappar säkerhet med get-funktioner som har const ex dock
+
+Större risk att man av misstag ändrar ett värde
 
 --
 
@@ -1234,15 +1336,16 @@ Exempelvis för ***aggregatklasser***
 
 --
 
-Fördel? De kan initieras med en ***Initialiseringslista***
+Fördel? De kan initieras med en ***initialiseringslista***
 
 --
-Ex:
-```cpp[|1|2|5]
+### Ett exempel:
+```cpp[1|5|2|6]
 struct Vec3f { float x&#44; y&#44; z; };
 struct Box { Vec3f min&#44; max; };
 
 int main(){
+	Vec3f myVec{1.0f&#44; 0.0f&#44; 0.0f};
 	Box myBox = { {1.0f&#44; 2.0f&#44; 3.0f}&#44; {2.0f&#44; 3.0f&#44; 4.0f} };
 }
 
@@ -1251,6 +1354,13 @@ int main(){
 ---
 
 ## Aliasing
+
+Note:
+Vi ger en typ (ett heltal, float, klass etc) ett alias
+
+--
+
+### Exempelvis:
 
 ```cpp
 typedef int cm;
@@ -1280,7 +1390,7 @@ struct Box {
 
 ### Praktiska att använda ihop med klasser
 
-```cpp
+```cpp[2, 10]
 struct Box {
     using cm = int;
     cm length;
@@ -1299,10 +1409,8 @@ int main(){
 
 ### Nackdelar
 
-```cpp
-using cm = int;
+```cpp[1,2|12,13]
 using inch = int;
-
 using cm = int;
 
 struct Box {
@@ -1317,11 +1425,17 @@ int main(){
     b.length = length;
 }
 ```
-<!-- .element: class="r-stretch" -->
+Note:
+I det här exemplet
 
+Två alias för samma typ
+
+Den ena kan användas istället för den andra
+
+Man får ingen varning
 --
 
-Alias är ***inte*** riktiga ***starka typer***, de är ***svaga typer*** typer
+Alias är ***inte*** riktiga ***starka typer***, de är ***svaga typer***
 
 (engelska: ***strong*** - ***weak***)
 <!-- .element: class="fragment" -->
@@ -1339,11 +1453,11 @@ Vid ***inlining*** ersätts funktionsanropet med en ***copy-paste*** av funktion
 
 --
 
-Ex:
+### Ett exempel:
 
-```cpp
-inline void add(int a, int b){
-    return a+b:
+```cpp[]
+inline int add(int a, int b){
+    return a+b;
 }
 
 int main(){
@@ -1352,18 +1466,118 @@ int main(){
 ```
 
 blir:
+<!-- .element: class="fragment" -->
 
 ```cpp
 int main(){
     int result = 43 + 1338;
 }
 ```
+<!-- .element: class="fragment" -->
 
 --
 
 I verkligheten kommer din ***kompilator*** själv ***avgöra*** vad som inlineas och inte
 
 **`inline`** är ett ***tips*** till kompilatorn, ***ingen instruktion***
+
+--
+
+`inline` kan dock användas för att definera samma funtion flera gånger ***(jättefarligt!)***
+
+--
+
+### Exempelvis:
+
+```cpp[]
+// add.hpp
+inline int add(int a, int b){
+    return a+b;
+}
+
+// foo.hpp
+int foo(int a, int b);
+
+// foo.cpp
+#include "add.hpp"
+int foo(int a, int b){
+    return add(a,b);
+}
+
+// main.cpp
+#include "add.hpp" 
+#include "foo.hpp" 
+int main(){
+    return foo (43, 3);
+}
+```
+<!-- .element: class="r-stretch" -->
+
+Note:
+Två headerfiler
+    - add funktionsdefinition
+    - foo funktionsdeklaration
+
+två källfiler
+    - foo, funktionsdefinition, använder add
+    - main, använder foo. Inkluderar både foo.hpp och add.hpp
+
+Notera: inga includeguards!
+--
+
+```bash[]
+clang++ -c foo.cpp && clang++ -c main.cpp && clang++ main.o foo.o
+/usr/bin/ld: foo.o: in function `add(int, int)':
+foo.cpp:(.text+0x0): multiple definition of `add(int, int)'; \
+    main.o:main.cpp:(.text+0x0): first defined here
+clang: error: linker command failed with exit code 1 (use -v to \
+    see invocation)
+```
+
+Note:
+#include-direktivet gör ju en copy-paste av headern in i källfilen 
+
+main.o och foo.o (en objektfil per källfil) kommer få varsin version av add()
+
+Länkaren, som länkar samman objektfilerna, kommer gnälla då den hittar två definitioner av samma funktion
+--
+
+```cpp[2]
+// add.hpp
+inline int add(int a, int b){
+    return a+b;
+}
+
+// foo.hpp
+int foo(int a, int b);
+
+// foo.cpp
+#include "add.hpp"
+int foo(int a, int b){
+    return add(a,b);
+}
+
+// main.cpp
+#include "add.hpp" 
+#include "foo.hpp" 
+int main(){
+    return foo (43, 3);
+}
+```
+
+--
+
+```bash
+clang++ foo.cpp main.cpp && ./a.out ; echo $?
+46
+```
+
+Note:
+Länkaren vet att det kan finnas flera definitioner, tack vara inline
+
+allt är frid och fröjd
+
+Vi kan köra programmet och returvärdet stämmer bra (43+3)
 
 ---
 
@@ -1382,7 +1596,7 @@ Du bör lägga din ***klassdefinition*** i en `*.cpp`-fil
 --
 ***Klassdeklaration*** i **`Car.hpp`**:
 
-```cpp[|11-13]
+```cpp[|6,11-13|9-10]
 class Car {
  private:
   float speed;
@@ -1404,7 +1618,7 @@ class Car {
 ***Klassdefinition*** i **`Car.cpp`**:
 
 ```cpp[|3,8,13,18]
-#include &lt;Car.hpp&gt;
+#include "Car.hpp"
 
 void Car::sanityCheckSpeed() {
   if (speed &lt; 0) speed = 0.0f;
@@ -1434,7 +1648,7 @@ Spelar ingen roll!
 
 --
 
-Ex:
+Public först-exempel:
 ```cpp
 class Car {
  public:
@@ -1453,12 +1667,12 @@ class Car {
 ```
 
 --
-Fördelar?
+### Fördelar?
 
 Lättare att förstå ditt API för andra
 <!-- .element: class="fragment" -->
 
-Nackdelar?
+### Nackdelar?
 
 Medlemsfunktioner hamnar före sina variabler
 <!-- .element: class="fragment" -->

@@ -10,6 +10,13 @@ En mall som man skapar objekt från
 ![OO](images/class-object-featured-image.png "OO")
 <!-- .element: class="fragment" -->
 
+Note:
+Man kan se det på flera sätt
+
+I grund och botten: en gruppering
+
+men kan dock se det som en mall
+
 --
 
 ### Varför klasser?
@@ -23,8 +30,14 @@ Det kan bli grötigt i stora projekt
 Med klasser kan man dela upp koden modulärt
 <!-- .element: class="fragment" -->
 
+Man kan tänka sig koden som en uppsättning "grejer"
+<!-- .element: class="fragment" -->
+
 --
 <!-- .slide: data-transition="fade" -->
+
+### Klassens anatomi
+
 ***Klasser*** har ***namn***
 
 ```cpp[1]
@@ -33,29 +46,42 @@ includecpp({{SomeClass1.hpp}})
 
 --
 <!-- .slide: data-transition="fade" -->
+
+### Klassens anatomi
+
 ***Medlemsvariabler***
 
 ```cpp[2]
 includecpp({{SomeClass1.hpp}})
 ```
+Note:
+Dags för ett exempel!
 
 --
 <!-- .slide: data-transition="fade" -->
+
+### Klassens anatomi
+
 ***Medlemsfunktioner***
 
 ```cpp[4-6]
 includecpp({{SomeClass1.hpp}})
 ```
+Note:
+Medlemsfunktioner kan också kallas metoder. Jag har (o)vanan att använda det ordet.
 
 --
-
 <!-- .slide: data-transition="fade slide-out" -->
-***Funktioner*** i ett objekt kan ***nå variabler*** i ***densamma***
+
+### Klassens anatomi
+
+***Funktioner*** i ett objekt kan ***nå variabler*** i ***objektet***
 
 ```cpp[4-6]
 includecpp({{SomeClass2.hpp}})
 ```
-
+Note:
+Vad är då Objekt
 --
 <!-- .slide: data-transition="slide-in fade-out" -->
 
@@ -68,15 +94,18 @@ includecpp({{SomeClass2Main1.cpp}})
 ```
 <!-- .element: class="fragment" -->
 
-```bash[1|2-3]
+```bash[2-3]
 includecpp({{SomeClass2MainCompOut1.txt}})
 ```
 <!-- .element: class="fragment" -->
 
+Note:
+Objekt är , som vi sa tidigare, en instans av en klass
+
 --
 <!-- .slide: data-transition="fade" -->
 
-Hur använder man dem?
+Hur använder man objekt?
 
 ```cpp[11]
 includecpp({{SomeClass2.hpp}})
@@ -84,7 +113,7 @@ includecpp({{SomeClass2.hpp}})
 includecpp({{SomeClass2Main2.cpp}})
 ```
 
-```bash[1|2-3|5]
+```bash[2-3|5]
 includecpp({{SomeClass2MainCompOut2.txt}})
 ```
 <!-- .element: class="fragment" -->
@@ -100,6 +129,7 @@ includecpp({{SomeClass3.hpp}})
 includecpp({{SomeClass2Main2.cpp}})
 
 ```
+<!-- .element: class="fragment" -->
 
 ```bash
 Compilation time: 0.25 sec

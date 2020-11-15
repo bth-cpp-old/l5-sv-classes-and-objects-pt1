@@ -10,10 +10,6 @@ include({{private_public.md}})
 
 ---
 
-include({{static.md}})
-
----
-
 include({{konstruktorer.md}})
 
 ---
@@ -35,6 +31,10 @@ include({{initialiseringslistor.md}})
 ---
 
 include({{konstanter.md}})
+
+---
+
+include({{static.md}})
 
 ---
 

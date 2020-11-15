@@ -13,7 +13,7 @@ Du bör lägga din ***klassdefinition*** i en `*.cpp`-fil
 --
 ***Klassdeklaration*** i **`Car.hpp`**:
 
-```cpp[|11-13]
+```cpp[|6,11-13|9-10]
 includecpp({{Car11.hpp}})
 ```
 
@@ -35,18 +35,18 @@ Spelar ingen roll!
 
 --
 
-Ex:
+Public först-exempel:
 ```cpp
 includecpp({{Car11.2.hpp}})
 ```
 
 --
-Fördelar?
+### Fördelar?
 
 Lättare att förstå ditt API för andra
 <!-- .element: class="fragment" -->
 
-Nackdelar?
+### Nackdelar?
 
 Medlemsfunktioner hamnar före sina variabler
 <!-- .element: class="fragment" -->

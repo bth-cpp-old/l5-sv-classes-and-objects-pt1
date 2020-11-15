@@ -4,7 +4,7 @@
 
 Eller: 
 
-***Flera konstruktorer*** som heter ***likadant***
+***Flera medlemsfunktioner*** som heter ***likadant***
 
 --
 
@@ -24,11 +24,21 @@ includecpp({{OverloadingOut.txt}})
 
 I ***kompileringen*** kommer namn att ***manglas***
 
-* `int f()` blir `_Z1fv`
-* `int f(int i)` blir  `_Z1fi`
+* `int f()` blir `_Z1fv` <!-- .element: class="fragment" -->
+* `int f(int i)` blir  `_Z1fi` <!-- .element: class="fragment" -->
 
+Note:
+fv, funktionens namn och void
+- void som i tomhet
+- void, precis som returvärdet
+
+fi, funktionens namn och int
+
+Notera att returvärdet ej finns med i manglingen
+
+Exemplet ovan är från Linux/GCC
 --
 
-### Varför
+### Varför mangling
 
-Då vet kompilatorn vilken ***version*** av funktionen du anropar
+Då vet länkaren vilken ***version*** av funktionen du anropar
